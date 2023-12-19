@@ -16,13 +16,12 @@ import {
   PendingApplicants,
   StateProfile,
 } from "./State";
-import { InstitutionProfile, Accpted, Pending, Accepted } from "./Institution";
+import { InstitutionProfile, Accepted, Pending } from "./Institution";
 import { StudentNav, StateNav, InstituteNav } from "./Sidebar";
 import VerifiedId from "./Student/VerifiedCard/Card";
 
 // components
 import Sidebar from "../components/Sidebar";
-// import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Preloader from "../components/Preloader";
 
@@ -226,6 +225,12 @@ const HomePage = () => {
           )}
         </Routes>
       </BrowserRouter>
+      <df-messenger
+        intent="WELCOME"
+        chat-title="SIH_2023"
+        agent-id="30844c74-45ee-46f7-9b07-3401947e4342"
+        language-code="en"
+      ></df-messenger>
     </div>
   );
 };

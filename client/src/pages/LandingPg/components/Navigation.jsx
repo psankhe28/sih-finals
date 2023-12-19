@@ -7,20 +7,9 @@ const Navigation = () => {
    return (
       <>
          <NavigationStyled>
-            <div className="logo mt-5">
-               <img src={logo} alt="" />
+            <div className="logo mt-2 mb-2">
+               <img src={logo} alt="" style={{height:'72px'}} />
             </div>
-            <ul className='mt-2'>
-               <li>
-                  <StyledLink to="header" spy={true} smooth={true}>Home</StyledLink>
-               </li>
-               <li>
-                  <StyledLink to="features" spy={true} smooth={true}>Features</StyledLink>
-               </li>
-               <li>
-                  <StyledLink to="pricing" spy={true} smooth={true}>Pricing</StyledLink>
-               </li>
-            </ul>
             <div className="buttons">
                <RegisterButton>Register</RegisterButton>
                <LoginButton>Login</LoginButton>
