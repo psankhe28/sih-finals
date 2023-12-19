@@ -15,6 +15,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "@themesberg/react-bootstrap": "^1.4.1",
+    "@tweenjs/tween.js": "^21.0.0",
     "aos": "^2.3.4",
     "bootstrap": "5.0.0-beta1",
     "html2canvas": "^1.4.1",
