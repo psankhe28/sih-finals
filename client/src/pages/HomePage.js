@@ -1,22 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Routes, Link, Outlet, useParams, Navigate, BrowserRouter } from 'react-router-dom';
-import { SignUp, Login, Homepage } from './index';
-import { StudentProfile } from './Student';
+import React, { useState, useEffect } from "react";
 import {
+  Route,
+  Routes,
+  Link,
+  Outlet,
+  useParams,
+  Navigate,
+  BrowserRouter,
+} from "react-router-dom";
+import { SignUp, Login, Homepage } from "./index";
+import { StudentProfile } from "./Student";
+import {
+  AddScheme,
   AcceptedApplicants,
-  PendingApplicants, StateProfile
-} from './State';
-import { InstitutionProfile } from './Institution';
-import { StudentNav, StateNav, InstituteNav } from './Sidebar';
+  PendingApplicants,
+  StateProfile,
+} from "./State";
+import { InstitutionProfile, Accepted, Pending } from "./Institution";
+import { StudentNav, StateNav, InstituteNav } from "./Sidebar";
+import VerifiedId from "./Student/VerifiedCard/Card";
+
+// components
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import Preloader from "../components/Preloader";
 
-import LandingPg from './LandingPg/LandingPg';
-import ViewScheme from './State/ViewScheme/ViewScheme';
-import Scheme from './Student/Schemes/Scheme';
-import SchemeHistory from './Student/SchemeHistory/SchemeHistory';
-import Usp from '../UniqueSellingPoint/verifyDigitalID';
+import LandingPg from "./LandingPg/LandingPg";
+import ViewScheme from "./State/ViewScheme/ViewScheme";
+import Scheme from "./Student/Schemes/Scheme";
+import SchemeHistory from "./Student/SchemeHistory/SchemeHistory";
+import Usp from "../UniqueSellingPoint/verifyDigitalID";
 
 const StateWithSidebar = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -27,15 +40,17 @@ const StateWithSidebar = ({ component: Component, ...rest }) => {
   }, []);
 
   const localStorageIsSettingsVisible = () => {
-    return localStorage.getItem('settingsVisible') === 'false' ? false : true
-  }
+    return localStorage.getItem("settingsVisible") === "false" ? false : true;
+  };
 
-  const [showSettings, setShowSettings] = useState(localStorageIsSettingsVisible);
+  const [showSettings, setShowSettings] = useState(
+    localStorageIsSettingsVisible
+  );
 
   const toggleSettings = () => {
     setShowSettings(!showSettings);
-    localStorage.setItem('settingsVisible', !showSettings);
-  }
+    localStorage.setItem("settingsVisible", !showSettings);
+  };
 
   return (
     <>
@@ -119,30 +134,26 @@ const InstitutionWithSidebar = ({ component: Component, ...rest }) => {
 };
 
 const HomePage = () => {
-
-  const [token, setToken] = useState(false)
+  const [token, setToken] = useState(false);
 
   if (token) {
-    sessionStorage.setItem('token', JSON.stringify(token))
+    sessionStorage.setItem("token", JSON.stringify(token));
   }
 
   useEffect(() => {
-    if (sessionStorage.getItem('token')) {
-      let data = JSON.parse(sessionStorage.getItem('token'))
-      setToken(data)
+    if (sessionStorage.getItem("token")) {
+      let data = JSON.parse(sessionStorage.getItem("token"));
+      setToken(data);
     }
-
-  }, [])
-
-
+  }, []);
 
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path={'/signup'} element={<SignUp />} />
-          <Route path={'/'} element={<LandingPg />} />
-          <Route path={'/login'} element={<Login setToken={setToken} />} />
+          <Route path={"/signup"} element={<SignUp />} />
+          <Route path={"/"} element={<LandingPg />} />
+          <Route path={"/login"} element={<Login setToken={setToken} />} />
 
           <Route
             exact
@@ -194,12 +205,12 @@ const HomePage = () => {
           <Route
             exact
             path={"/institute/accepted-applicants"}
-            element={<InstitutionWithSidebar component={InstitutionProfile} />}
+            element={<InstitutionWithSidebar component={Accepted} />}
           />
           <Route
             exact
             path={"/institute/pending-applicants"}
-            element={<InstitutionWithSidebar component={InstitutionProfile} />}
+            element={<InstitutionWithSidebar component={Pending} />}
           />
           {/* <Route
             exact
@@ -207,8 +218,11 @@ const HomePage = () => {
             element={<Usp/>}
           /> */}
 
-          {token ? <Route path={'/homepage'} element={<Homepage token={token} />} /> : ""}
-
+          {token ? (
+            <Route path={"/homepage"} element={<Homepage token={token} />} />
+          ) : (
+            ""
+          )}
         </Routes>
       </BrowserRouter>
       <df-messenger
@@ -218,7 +232,7 @@ const HomePage = () => {
         language-code="en"
       ></df-messenger>
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
