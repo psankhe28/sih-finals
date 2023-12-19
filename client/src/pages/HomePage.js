@@ -18,6 +18,7 @@ import Preloader from "../components/Preloader";
 
 import LandingPg from './LandingPg/LandingPg';
 import ViewScheme from './State/ViewScheme/ViewScheme';
+import Scheme from './Student/Schemes/Scheme';
 
 const StateWithSidebar = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -158,7 +159,7 @@ const HomePage = () => {
           <Route
             exact
             path={"/student/schemes"}
-            element={<StudentWithSidebar component={StudentProfile} />}
+            element={<StudentWithSidebar component={Scheme} />}
           />
           <Route
             exact
