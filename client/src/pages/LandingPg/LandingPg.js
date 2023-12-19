@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import CardSection from "./Sections/CardSection";
 import ChartSection from "./Sections/ChartSection";
 import Footer from "./components/Footer";
@@ -10,18 +10,20 @@ import 'aos/dist/aos.css'
 import ScrolledButton from "./components/ScrolledButton";
 import './LandingPg.css'
 import Slideshow from "./components/Slideshow";
+import Navigation from "./components/Navigation";
 
 function LandingPg() {
 
 
-  useEffect(()=>{
-    aos.init({duration: 2000})
-  },[])
+  useEffect(() => {
+    aos.init({ duration: 2000 })
+  }, [])
 
   return (
     <div>
-      {/* <Header /> */}
-      <Slideshow/>
+      {/* <Navigation /> */}
+      <Header />
+      <Slideshow />
       <OuterLayout>
         <main>
           <CardSection />

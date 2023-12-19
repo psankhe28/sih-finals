@@ -9,12 +9,12 @@ const CardSection = () => {
       <CardSectionStyled id='card'>
          <InnerLayout >
             <div className="card-container">
-               <div  className="card-left">
+               <div className="card-left">
                   <h2 data-aos='fade-right' data-aos-duration='3000' className="secondary-heading" >
                      One card for all your verified documents
                   </h2>
                   <p>
-                  Unlocking Possibilities, One Click at a Time - Explore, Connect, and Thrive with Us
+                     Unlocking Possibilities, One Click at a Time - Explore, Connect, and Thrive with Us
                   </p>
                </div>
                <div className="card-right">
