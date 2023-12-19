@@ -3,7 +3,7 @@ import { Col, Row, Card, Form, Button } from "@themesberg/react-bootstrap";
 import { supabase } from "../../../client";
 import './Form.css'
 
-export const StudentForm = ({ token }) => {
+export const StateForm = ({ token }) => {
   const [formData, setFormData] = useState({
     Name: "",
     CollegeId: "",
@@ -71,7 +71,7 @@ export const StudentForm = ({ token }) => {
           <Row>
             <Col md={6} className="mb-3">
               <Form.Group id="Name">
-                <Form.Label>Name</Form.Label>
+                <Form.Label>Name of the Person</Form.Label>
                 {token && token.user ? (
                   <Form.Control
                     type="text"
@@ -97,7 +97,7 @@ export const StudentForm = ({ token }) => {
             </Col>
             <Col md={6} className="mb-3">
               <Form.Group id="regId">
-                <Form.Label>College Id</Form.Label>
+                <Form.Label>State Code</Form.Label>
                 <Form.Control
                   required
                   type="text"
@@ -113,7 +113,7 @@ export const StudentForm = ({ token }) => {
           <Row className="align-items-center">
             <Col md={6} className="mb-3">
               <Form.Group id="age">
-                <Form.Label>Age</Form.Label>
+                <Form.Label>State</Form.Label>
                 <Form.Control
                   required
                   type="number"
@@ -126,24 +126,6 @@ export const StudentForm = ({ token }) => {
               </Form.Group>
             </Col>
             <Col md={6} className="mb-3">
-              <Form.Group id="gender">
-                <Form.Label>Gender</Form.Label>
-                <Form.Select
-                  defaultValue="0"
-                  value={formData.Gender === "Female" ? "1" : formData.Gender === "Male" ? "2" : "0"}
-                  onChange={handleInputChangeGender}
-                  id="Gender"
-                  name="Gender"
-                >
-                  <option value="0">Gender</option>
-                  <option value="1">Female</option>
-                  <option value="2">Male</option>
-                </Form.Select>
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={7} className="mb-3">
               <Form.Group id="email">
                 <Form.Label>Email</Form.Label>
                 {token && token.user ? (
@@ -167,96 +149,6 @@ export const StudentForm = ({ token }) => {
                     name="Email"
                   />
                 )}
-              </Form.Group>
-            </Col>
-
-            <Col md={5} className="mb-3">
-              <Form.Group id="phone">
-                <Form.Label>Phone</Form.Label>
-                {token && token.user ? (
-                  <Form.Control
-                    type="number"
-                    placeholder="+91 xxxxxxxxxx"
-                    defaultValue={token.user.phone}
-                    readOnly
-                    id="Phone_no"
-                    name="Phone_no"
-                  />
-                ) : (
-                  <Form.Control
-                    required
-                    type="number"
-                    placeholder="+91 xxxxxxxxxx"
-                    value={formData.Phone_no}
-                    onChange={handleInputChange}
-                    id="Phone_no"
-                    name="Phone_no"
-                  />
-                )}
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={7} className="mb-3">
-              <Form.Group id="institute">
-                <Form.Label>Institution</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="Enter your institute"
-                  value={formData.Institute}
-                  onChange={handleInputChange}
-                  id="Institute"
-                  name="Institute"
-                />
-              </Form.Group>
-            </Col>
-            <Col md={5} className="mb-3">
-              <Form.Group id="validity">
-                <Form.Label>Passing Year</Form.Label>
-                <Form.Control
-                  required
-                  type="number"
-                  placeholder="Passing Year"
-                  value={formData.ValidityYear}
-                  onChange={handleInputChange}
-                  id="validity"
-                  name="validity"
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-
-          <h5 className="my-4">
-            <b>Address</b>
-          </h5>
-          <Row>
-            <Col sm={8} className="mb-3">
-              <Form.Group id="address">
-                <Form.Label>Address</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="Enter your address"
-                  value={formData.Address}
-                  onChange={handleInputChange}
-                  id="Address"
-                  name="Address"
-                />
-              </Form.Group>
-            </Col>
-            <Col sm={4} className="mb-3">
-              <Form.Group className="mb-2" id="state">
-                <Form.Label>Home State</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="State"
-                  value={formData.HomeState}
-                  onChange={handleInputChange}
-                  id="HomeState"
-                  name="HomeState"
-                />
               </Form.Group>
             </Col>
           </Row>

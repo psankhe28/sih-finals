@@ -3,9 +3,7 @@ import CardSection from "./Sections/CardSection";
 import ChartSection from "./Sections/ChartSection";
 import Footer from "./components/Footer";
 import Header from "./Sections/Header";
-import MessagingSection from "./Sections/MessagingSection";
 import FAQSection from "./Sections/FAQSection";
-import PaymentSection from "./Sections/PricingSection";
 import { OuterLayout } from "./styles/Layout";
 import aos from 'aos'
 import 'aos/dist/aos.css'
@@ -26,9 +24,8 @@ function LandingPg() {
         <main>
           <CardSection />
           <ChartSection />
-          <MessagingSection />
-          <PaymentSection />
           <FAQSection />
+          <h3>For More such questions, use our bot!</h3>
         </main>
       </OuterLayout>
       <Footer />

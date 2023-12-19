@@ -22,11 +22,10 @@ const ChartSection = () => {
                </div>
                <div className="chart-right">
                   <h2 data-aos='fade-right' className="secondary-heading">
-                     Manage your finances like a pro in no time
+                     Manage your Scholarships like a pro in no time
                   </h2>
                   <p>
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem officia nemo distinctio dolores necessitatibus odit magni corrupti error,
-                     voluptate alias adipisci ducimus nostrum maiores. Ad?
+                  Effortlessly navigate your scholarship journey with precision. XXX simplifies document verification for students studying away from home. Seamlessly manage your scholarships like a pro, ensuring hassle-free validation wherever you study. Your academic ambitions, our seamless support
                   </p>
                   {/* <Roll right>
                      <p>

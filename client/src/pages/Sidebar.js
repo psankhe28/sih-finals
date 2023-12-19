@@ -14,7 +14,7 @@ export const StateNav = [
   { title: "View Schemes", link: "/state/view-schemes", icon: faCog },
   { title: "Accepted Applicants", link: "/state/accepted", icon: faCog },
   { title: "Pending Applicants", link: "/state/pending", icon: faCog },
-  { title: "Profile", link: "/state/profile", icon: faCog },
+  // { title: "Profile", link: "/state/profile", icon: faCog },
 ];
 
 export const InstituteNav = [
@@ -22,5 +22,5 @@ export const InstituteNav = [
   { title: "Applicants", link: "/institute/applicants", icon: faChartPie },
   { title: "Verified Applicants", link: "/institute/accepted", icon: faCog },
   { title: "Pending Applicants", link: "/institute/pending", icon: faCog },
-  { title: "Profile", link: "/institute/profile", icon: faCog },
+  // { title: "Profile", link: "/institute/profile", icon: faCog },
 ];
