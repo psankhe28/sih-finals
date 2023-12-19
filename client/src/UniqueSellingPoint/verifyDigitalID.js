@@ -7,8 +7,8 @@ const QRCodeDecoder = () => {
 
     // if (file) {
       try {
-        // const imageUrl = URL.createObjectURL(file);
-        const imageUrl = "https://i.ibb.co/YfPkbGY/Screenshot.png";
+        const imageUrl = URL.createObjectURL(file);
+        // const imageUrl = "https://i.ibb.co/YfPkbGY/Screenshot.png";
         const img = new Image();
         img.src = imageUrl;
         img.crossOrigin = 'Anonymous';

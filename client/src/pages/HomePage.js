@@ -8,7 +8,7 @@ import {
 } from './State';
 import { InstitutionProfile } from './Institution';
 import { StudentNav, StateNav, InstituteNav } from './Sidebar';
-import VerifiedId from "./Student/VerifiedCard/Card"; 
+// import VerifiedId from "./Student/VerifiedCard/Card"; 
 
 // components
 import Sidebar from "../components/Sidebar";
@@ -20,6 +20,7 @@ import LandingPg from './LandingPg/LandingPg';
 import ViewScheme from './State/ViewScheme/ViewScheme';
 import Scheme from './Student/Schemes/Scheme';
 import SchemeHistory from './Student/SchemeHistory/SchemeHistory';
+import Usp from '../UniqueSellingPoint/verifyDigitalID'
 
 const StateWithSidebar = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -214,6 +215,11 @@ const HomePage = () => {
             path={"/institute/pending-applicants"}
             element={<InstitutionWithSidebar component={InstitutionProfile} />}
           />
+          {/* <Route
+            exact
+            path={"/usp"}
+            element={<Usp/>}
+          /> */}
 
           {token ? <Route path={'/homepage'} element={<Homepage token={token} />} /> : ""}
 

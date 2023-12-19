@@ -1,6 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../../../client";
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+
 const Scheme = ({ stateName }) => {
+  const id = 1;
+  const [show, setShow] = useState(false);
+  const [schemeData, setSchemeData] = useState({
+    schemeName: '', schemeDesc: '', details: '', documents: '', state: '', endDate: ''
+  })
+  const [details, setDetails] = useState([])
+  const [documents, setDocuments] = useState([])
+  const [applyschemeData, setApplyschemeData] = useState('')
+  const [studentSchemeDetails, setStudentSchemeDetails] = useState({});
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  function handleChange(event) {
+    setStudentSchemeDetails((prevSchemeData) => {
+      return {
+        ...prevSchemeData,
+        [event.target.name]: event.target.value
+      }
+    })
+    console.log(studentSchemeDetails)
+
+  }
   stateName = "Maharashtra";
   const [schemes, setSchemes] = useState([]);
   useEffect(() => {
@@ -19,7 +45,130 @@ const Scheme = ({ stateName }) => {
     console.log(schemes);
     getSchemes();
   }, []);
-  return <></>;
+  async function handleApply(id) {
+
+    console.log(id);
+
+    try {
+      let { data, error } = await supabase
+        .from("Schemes")
+        .select("*")
+        .eq("id", id);
+      setApplyschemeData(data);
+      setDetails(Object.values(applyschemeData[0].Details));
+      setDocuments(Object.values(applyschemeData[0].Documents));
+      console.log(data);
+      console.log(applyschemeData[0].Details);
+      console.log(details);
+      setShow(true);
+    } catch (err) {
+      console.log(err);
+    }
+
+  }
+  async function handleSchemeApply() {
+
+    const { data, error } = await supabase
+      .from('Students')
+      .insert([
+        { 'additionalDetails': studentSchemeDetails, 'id': id }
+      
+      ])
+      .select()
+
+      console.log(data);
+
+
+  }
+  return (
+    <div>
+      <Table responsive striped bordered hover variant="light">
+        <thead>
+          <tr class="thead">
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Documents</th>
+            <th scope="col">Details</th>
+            <th scope="col">Deadline</th>
+
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {schemes?.map((scheme, index) => {
+            return (
+              <tr>
+                <td data-label="scheme" style={{ whiteSpace: 'wrap' }}>{scheme.SchemeName}</td>
+                <td data-label="desc" style={{ whiteSpace: 'wrap' }}>{scheme.SchemeDesc}</td>
+                <td data-label="documents" style={{ whiteSpace: 'wrap' }}>{scheme.Documents.join(', ')}</td>
+                <td data-label="details" style={{ whiteSpace: 'wrap' }}>{scheme.Details.join(', ')}</td>
+                <td data-label="date" style={{ whiteSpace: 'wrap' }}>{scheme.EndDate}</td>
+                <td data-label="Delete">
+                  <button
+                    style={{ background: "none", color: 'black' }}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      handleApply(scheme.id);
+                    }}
+                  >Apply</button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+      <>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Apply to Scheme</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+
+            <Form style={{ alignItems: "normal", padding: 0 }}>
+
+              {details?.map((scheme, index) => {
+                return (
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Label>{scheme}</Form.Label>
+                    <Form.Control
+                      name={scheme}
+                      placeholder="Scheme Name"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                );
+              })}
+              {/* {documents?.map((scheme, index) => {
+                return (
+
+                  <Form.Group className="position-relative mb-3">
+                    <Form.Label>{scheme}</Form.Label>
+                    <Form.Control
+                      type="file"
+                      required
+                      name="file"
+                      onChange={handleChange}
+
+                    />
+
+
+                  </Form.Group>
+
+                );
+              })} */}
+
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleSchemeApply}>
+              Apply
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    </div>
+
+  );
 };
 
 export default Scheme;
