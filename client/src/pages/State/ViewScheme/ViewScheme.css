@@ -1,0 +1,28 @@
+.sorting_asc{
+    color: white !important;
+}
+.custom-datatable tbody tr {
+    height: 50px; /* Adjust the height as needed */
+  }
+  
+  .custom-datatable thead th {
+    height: 50px; /* Adjust the height as needed */
+  }
+
+  .custom-datatable thead th {
+    background-color: #262a41; /* Background color for header row */
+    color: #f5f4f4; /* Text color for header row */
+  }
+  .mdb-datatable-filter {
+    margin-top: 50px;
+  }
+
+  .mdb-datatable-filter input[type="search"] {
+    margin-bottom: 100px; /* Adjust the value based on your preference */
+  }
+  .custom-datatable .dataTables_filter input[type="search"] {
+    margin-bottom: 100px !important; /* Adjust the value based on your preference */
+  }
+  .custom-datatable td {
+    white-space: normal;
+  }
