@@ -74,7 +74,6 @@ const StudentScheme = () => {
             Documents: scheme.Documents.join(', '),
             Details: scheme.Details.join(', '),
             EndDate: scheme.EndDate,
-            // You can add actions column data here based on your requirements
             Actions: (
                 <button
                     style={{ background: 'none', color: 'black' }}

@@ -1,6 +1,5 @@
-import AddScheme from "./AddScheme/AddScheme";
 import AcceptedApplicants from "./AcceptedApplicants/AcceptedApplicants";
 import PendingApplicants from "./PendingApplicants/PendingApplicants";
-import StateProfile from "./Profile/Profile";
+import ViewScheme from "./ViewScheme/ViewScheme";
 
-export { AddScheme, AcceptedApplicants, PendingApplicants, StateProfile };
+export {AcceptedApplicants, PendingApplicants, ViewScheme };

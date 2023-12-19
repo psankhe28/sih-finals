@@ -2,34 +2,23 @@ import React, { useState, useEffect } from "react";
 import {
   Route,
   Routes,
-  Link,
-  Outlet,
-  useParams,
-  Navigate,
   BrowserRouter,
 } from "react-router-dom";
 import { SignUp, Login, Homepage } from "./index";
-import { StudentProfile } from "./Student";
+import { StudentProfile,Scheme,SchemeHistory } from "./Student";
 import {
-  AddScheme,
   AcceptedApplicants,
   PendingApplicants,
-  StateProfile,
+  ViewScheme,
 } from "./State";
-import { InstitutionProfile, Accepted, Pending } from "./Institution";
+import { Accepted, Pending } from "./Institution";
 import { StudentNav, StateNav, InstituteNav } from "./Sidebar";
-import VerifiedId from "./Student/VerifiedCard/Card";
-
-// components
+// import VerifiedId from "./Student/VerifiedCard/Card";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import Preloader from "../components/Preloader";
-
 import LandingPg from "./LandingPg/LandingPg";
-import ViewScheme from "./State/ViewScheme/ViewScheme";
-import Scheme from "./Student/Schemes/Scheme";
-import SchemeHistory from "./Student/SchemeHistory/SchemeHistory";
-import Usp from "../UniqueSellingPoint/verifyDigitalID";
+// import Usp from "../UniqueSellingPoint/verifyDigitalID";
 
 const StateWithSidebar = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -178,11 +167,6 @@ const HomePage = () => {
           {/* <Route path={"/card"} element={<VerifiedId token={token} />} /> */}
           <Route
             exact
-            path={"/state/profile"}
-            element={<StateWithSidebar component={StateProfile} />}
-          />
-          <Route
-            exact
             path={"/state/view-schemes"}
             element={<StateWithSidebar component={ViewScheme} />}
           />
@@ -195,12 +179,6 @@ const HomePage = () => {
             exact
             path={"/state/pending-applicants"}
             element={<StateWithSidebar component={PendingApplicants} />}
-          />
-
-          <Route
-            exact
-            path={"/institute/profile"}
-            element={<InstitutionWithSidebar component={InstitutionProfile} />}
           />
           <Route
             exact

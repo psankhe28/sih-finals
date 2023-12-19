@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import CardSection from "./Sections/CardSection";
-import ChartSection from "./Sections/ChartSection";
 import Footer from "./components/Footer";
 import Header from "./Sections/Header";
 import FAQSection from "./Sections/FAQSection";
