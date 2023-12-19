@@ -168,12 +168,12 @@ const HomePage = () => {
             path={"/student/applied-schemes"}
             element={<StudentWithSidebar component={SchemeHistory} />}
           />
-          <Route
+          {/* <Route
             exact
             path={"/student/verified-card"}
             element={<StudentWithSidebar component={VerifiedId} />}
-          />
-          <Route path={"/card"} element={<VerifiedId token={token} />} />
+          /> */}
+          {/* <Route path={"/card"} element={<VerifiedId token={token} />} /> */}
           <Route
             exact
             path={"/state/profile"}

@@ -15,6 +15,7 @@ const Scheme = ({ stateName }) => {
   const [documents, setDocuments] = useState([])
   const [applyschemeData, setApplyschemeData] = useState('')
   const [studentSchemeDetails, setStudentSchemeDetails] = useState({});
+  const [files, setFiles] = useState({});
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   function handleChange(event) {
@@ -27,6 +28,11 @@ const Scheme = ({ stateName }) => {
     console.log(studentSchemeDetails)
 
   }
+
+  const handleDocChange = async (e) => {
+    setFiles({ ...files, [e.target.name]: e.target.files[0] });
+  };
+
   stateName = "Maharashtra";
   const [schemes, setSchemes] = useState([]);
   useEffect(() => {
@@ -72,11 +78,32 @@ const Scheme = ({ stateName }) => {
       .from('Students')
       .insert([
         { 'additionalDetails': studentSchemeDetails, 'id': id }
-      
+
       ])
       .select()
 
-      console.log(data);
+    console.log(data);
+    console.log(files);
+    for (let entry of Object.entries(files)) {
+      if (!entry[0]) {
+        alert("Please Upload All Required Files");
+        return;
+      }
+    }
+    for (let entry of Object.entries(files)) {
+      try {
+        let { data, error } = await supabase.storage
+          .from("Documents")
+          .upload(`${id}/${entry[0]}`, entry[1], {
+            cacheControl: "3600",
+            upsert: false,
+          });
+        console.group(data);
+        if (error) console.log(error);
+      } catch (err) {
+        console.log(err);
+      }
+    }
 
 
   }
@@ -138,7 +165,7 @@ const Scheme = ({ stateName }) => {
                   </Form.Group>
                 );
               })}
-              {/* {documents?.map((scheme, index) => {
+              {documents?.map((scheme, index) => {
                 return (
 
                   <Form.Group className="position-relative mb-3">
@@ -146,16 +173,14 @@ const Scheme = ({ stateName }) => {
                     <Form.Control
                       type="file"
                       required
-                      name="file"
-                      onChange={handleChange}
-
+                      name={scheme}
+                      onChange={handleDocChange}
                     />
-
 
                   </Form.Group>
 
                 );
-              })} */}
+              })}
 
             </Form>
           </Modal.Body>
