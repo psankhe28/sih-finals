@@ -6,3 +6,4 @@ regex==2022.10.31
 PyPDF2==3.0.1
 reportlab==4.0.7
 gunicorn==20.0.4
+Werkzeug==2.2.2
