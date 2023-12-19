@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row, Card, Form, Button } from "@themesberg/react-bootstrap";
 import { supabase } from "../../../client";
+import './Form.css'
 
 export const StudentForm = ({ token }) => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ export const StudentForm = ({ token }) => {
     Gender: "",
     Address: "",
     Phone_no: "",
+    ValidityYear:"",
     InstituteVerified: false,
     SchemeVerified: false,
 
@@ -234,17 +236,31 @@ export const StudentForm = ({ token }) => {
             </Col>
           </Row>
           <Row>
-            <Col md={12} className="mb-3">
+            <Col md={7} className="mb-3">
               <Form.Group id="institute">
-                <Form.Label>Institution Name</Form.Label>
+                <Form.Label>Institution</Form.Label>
                 <Form.Control
                   required
                   type="text"
-                  placeholder="Enter your institute name"
+                  placeholder="Enter your institute"
                   value={formData.Institute}
                   onChange={handleInputChange}
                   id="Institute"
                   name="Institute"
+                />
+              </Form.Group>
+            </Col>
+            <Col md={5} className="mb-3">
+              <Form.Group id="validity">
+                <Form.Label>Passing Year</Form.Label>
+                <Form.Control
+                  required
+                  type="number"
+                  placeholder="Passing Year"
+                  value={formData.ValidityYear}
+                  onChange={handleInputChange}
+                  id="validity"
+                  name="validity"
                 />
               </Form.Group>
             </Col>

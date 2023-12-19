@@ -11,11 +11,10 @@ const CardSection = () => {
             <div className="card-container">
                <div  className="card-left">
                   <h2 data-aos='fade-right' data-aos-duration='3000' className="secondary-heading" >
-                     One card for all your payments
+                     One card for all your verified documents
                   </h2>
                   <p>
-                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt reprehenderit doloremque quia? Odit illo, tempore quod vero exercitationem,
-                     voluptatum laudantium quo harum, adipisci tenetur eum.
+                  Unlocking Possibilities, One Click at a Time - Explore, Connect, and Thrive with Us
                   </p>
                </div>
                <div className="card-right">

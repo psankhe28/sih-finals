@@ -3,29 +3,30 @@ import styled from 'styled-components'
 import { Link } from 'react-scroll'
 import PrimaryButton from './PrimaryButton'
 import logo from '../assets/img/logo.svg'
+// import Slideshow from './Slideshow'
 
 const Navigation = () => {
-
-
-
    return (
+      <>
       <NavigationStyled>
-         <div className="logo">
+         <div className="logo mt-5">
             <img src={logo} alt="" />
          </div>
-         <ul>
+         <ul className='mt-5'>
             <li>
-               <Link to="header" spy={true} smooth={true}>Home </Link>
+               <StyledLink to="header" spy={true} smooth={true}>Home </StyledLink>
             </li>
             <li>
-               <Link to="feathures" spy={true} smooth={true}>Feathures </Link>
+               <StyledLink to="features" spy={true} smooth={true}>Features </StyledLink>
             </li>
             <li>
-               <Link to="pricing" spy={true} smooth={true}>Pricing </Link>
+               <StyledLink to="pricing" spy={true} smooth={true}>Pricing </StyledLink>
             </li>
          </ul>
          <PrimaryButton name='Signup' />
       </NavigationStyled>
+      {/* <Slideshow/> */}
+      </>
    )
 }
 
@@ -34,13 +35,25 @@ const NavigationStyled = styled.nav`
    justify-content: space-between;
    align-items: center;
    
-   ul{
+   ul {
       display: flex;
       justify-content: space-between;
       width: 40%;
-      li{
+      
+      li {
          cursor: pointer;
       }
+   }
+`
+
+const StyledLink = styled(Link)`
+   color: black;
+   font-weight: bold;
+   text-decoration: none;
+   transition: color 0.3s ease;
+   
+   &:hover {
+      color: #333; /* Change the color on hover if desired */
    }
 `
 
