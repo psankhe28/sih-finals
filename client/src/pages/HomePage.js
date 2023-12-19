@@ -16,7 +16,7 @@ import LandingPg from './LandingPg/LandingPg';
 import ViewScheme from './State/ViewScheme/ViewScheme';
 import Scheme from './Student/Schemes/Scheme';
 import SchemeHistory from './Student/SchemeHistory/SchemeHistory';
-import Usp from '../UniqueSellingPoint/verifyDigitalID'
+import Usp from '../UniqueSellingPoint/verifyDigitalID';
 
 const StateWithSidebar = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -164,7 +164,7 @@ const HomePage = () => {
             path={"/student/verified-card"}
             element={<StudentWithSidebar component={VerifiedId} />}
           /> */}
-          {/* <Route path={"/card"} element={<VerifiedId token={token} />} /> */}
+          <Route path={"/card"} element={<VerifiedId token={token} />} />
           <Route
             exact
             path={"/state/profile"}
