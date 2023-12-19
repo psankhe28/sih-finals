@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-scroll'
-import logo from '../assets/img/logo.svg'
+import logo from '../assets/img/logo.png'
 
 const Navigation = () => {
    return (
