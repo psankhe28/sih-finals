@@ -5,7 +5,7 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import { SignUp, Login, Homepage } from "./index";
-import { StudentProfile,Scheme,SchemeHistory } from "./Student";
+import { StudentProfile,Scheme,SchemeHistory, VerifiedId } from "./Student";
 import {
   AcceptedApplicants,
   PendingApplicants,
@@ -18,7 +18,7 @@ import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import Preloader from "../components/Preloader";
 import LandingPg from "./LandingPg/LandingPg";
-// import Usp from "../UniqueSellingPoint/verifyDigitalID";
+import Usp from "../UniqueSellingPoint/verifyDigitalID";
 
 const StateWithSidebar = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -147,24 +147,23 @@ const HomePage = () => {
           <Route
             exact
             path={"/student/profile"}
-            element={<StudentWithSidebar component={StudentProfile} />}
+            element={<StudentWithSidebar component={StudentProfile} token={token} />}
           />
           <Route
             exact
             path={"/student/schemes"}
-            element={<StudentWithSidebar component={Scheme} />}
+            element={<StudentWithSidebar component={Scheme} token={token}/>}
           />
           <Route
             exact
             path={"/student/applied-schemes"}
-            element={<StudentWithSidebar component={SchemeHistory} />}
+            element={<StudentWithSidebar component={SchemeHistory} token={token}/>}
           />
-          {/* <Route
+          <Route
             exact
-            path={"/student/verified-card"}
-            element={<StudentWithSidebar component={VerifiedId} />}
-          /> */}
-          {/* <Route path={"/card"} element={<VerifiedId token={token} />} /> */}
+            path={"/student/nsid"}
+            element={<StudentWithSidebar component={VerifiedId} token={token} />}
+          />
           <Route
             exact
             path={"/state/view-schemes"}

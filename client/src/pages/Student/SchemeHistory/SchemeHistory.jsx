@@ -3,8 +3,11 @@ import { supabase } from "../../../client";
 import SortIcon from '@mui/icons-material/Sort';
 import { MDBDataTable } from 'mdbreact';
 
-const SchemeHistory = ({ studentid }) => {
-  studentid = 9;
+const SchemeHistory = ({ token }) => {
+  const email = token.user.user_metadata.email;
+  const name = token.user.user_metadata.full_name;
+
+  let id;
   const [schemes, setSchemes] = useState([]);
   useEffect(() => {
     const getSchemes = async () => {
@@ -12,7 +15,7 @@ const SchemeHistory = ({ studentid }) => {
         let { data, error } = await supabase
           .from("Students")
           .select("*")
-          .eq("id", studentid)
+          .eq("id", id)
           .neq("schemeName", null);
 
         console.log(data);
@@ -23,6 +26,20 @@ const SchemeHistory = ({ studentid }) => {
     };
     console.log(schemes);
     getSchemes();
+    const getInfo = async () => {
+      try {
+        let { data, error } = await supabase
+          .from("Students")
+          .select("id")
+          .eq("Email", email)
+          .eq("Name", name)
+        console.log(data);
+        data[0]['id'] = id;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getInfo()
   }, []);
 
   const data = {
@@ -40,7 +57,7 @@ const SchemeHistory = ({ studentid }) => {
         width: 270,
       },
     ],
-    rows: schemes.map((scheme) => ({
+    rows: schemes?.map((scheme) => ({
       SchemeName: scheme.schemeName,
       SchemeVerified: scheme.SchemeVerified === 'TRUE' || 'true' ? 'Verified' : 'Not verified'
     })),

@@ -43,7 +43,7 @@ const Login = ({ setToken }) => {
             setLevel(event.target.value);
             setUser(false);
         }
-        
+
     }
     async function handleSubmit(e) {
         e.preventDefault()
@@ -55,8 +55,17 @@ const Login = ({ setToken }) => {
             if (error) throw error
             console.log(data)
             setToken(data)
+            if (level === 'student') {
+                navigate('/student/profile')
+            }
+            else if (level === 'state') {
+                navigate('/state/view-schemes')
+            }
+            else {
+                navigate('/institute/pending-applicants')
+            }
             //history.push('/homepage')
-            navigate('/homepage')
+            // navigate('/homepage')
             //   alert('Check your email for verification link')
 
         } catch (error) {
@@ -70,7 +79,7 @@ const Login = ({ setToken }) => {
             const { data, error } = await supabase.auth.signInWithPassword({
                 email: eData.email,
                 password: eData.epassword,
-              })
+            })
             if (error) throw error
             console.log(data)
             setToken(data)

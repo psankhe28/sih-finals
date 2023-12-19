@@ -5,12 +5,20 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-const Scheme = ({ stateName }) => {
-  const id = 1;
+const Scheme = ({ token }) => {
+  const email = token.user.user_metadata.email;
+  const name = token.user.user_metadata.full_name;
+  console.log(email)
+  console.log(name)
+
+  let id, state;
+
+
   const [show, setShow] = useState(false);
   const [schemeData, setSchemeData] = useState({
     schemeName: '', schemeDesc: '', details: '', documents: '', state: '', endDate: ''
   })
+
   const [details, setDetails] = useState([])
   const [documents, setDocuments] = useState([])
   const [applyschemeData, setApplyschemeData] = useState('')
@@ -33,15 +41,29 @@ const Scheme = ({ stateName }) => {
     setFiles({ ...files, [e.target.name]: e.target.files[0] });
   };
 
-  stateName = "Maharashtra";
   const [schemes, setSchemes] = useState([]);
+
   useEffect(() => {
+    const getInfo = async () => {
+      try {
+        let { data, error } = await supabase
+          .from("Students")
+          .select('*')
+          .eq("Email", email)
+          .eq("Name", name)
+        console.log(data);
+        // data[0]['InstituteVerified'] = InstituteVerified;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getInfo()
     const getSchemes = async () => {
       try {
         let { data, error } = await supabase
           .from("Schemes")
           .select("*")
-          .eq("State", stateName);
+          .eq("State", state);
         console.log(data);
         setSchemes(data);
       } catch (err) {
@@ -51,6 +73,7 @@ const Scheme = ({ stateName }) => {
     console.log(schemes);
     getSchemes();
   }, []);
+
   async function handleApply(id) {
 
     console.log(id);

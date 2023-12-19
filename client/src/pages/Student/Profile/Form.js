@@ -5,16 +5,16 @@ import './Form.css'
 
 export const StudentForm = ({ token }) => {
   const [formData, setFormData] = useState({
-    Name: "",
+    Name: token.user.user_metadata.full_name,
     CollegeId: "",
     HomeState: "",
     Institute: "",
     created_at: new Date().toISOString(),
-    Email: "",
+    Email: token.user.user_metadata.email,
     Age: "",
     Gender: "",
     Address: "",
-    Phone_no: "",
+    Phone_no: token.user.phone,
     ValidityYear:"",
     InstituteVerified: false,
     SchemeVerified: false,
@@ -26,7 +26,6 @@ export const StudentForm = ({ token }) => {
   const handleChange = async (e) => {
     setDataFile({ ...datafile, [e.target.name]: e.target.files[0] });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -115,11 +114,12 @@ export const StudentForm = ({ token }) => {
                   <Form.Control
                     type="text"
                     placeholder="Enter your name"
-                    defaultValue={token.user.user_metadata.full_name}
-                    value={formData.Name}
+                    defaultValue={token.session.user.user_metadata.full_name}
+                    value={token.session.user.user_metadata.full_name}
                     onChange={handleInputChange}
                     id="Name"
                     name="Name"
+                    readOnly
                   />
                 ) : (
                   <Form.Control
@@ -188,12 +188,13 @@ export const StudentForm = ({ token }) => {
                 {token && token.user ? (
                   <Form.Control
                     type="email"
-                    placeholder="address@gmail.com"
-                    defaultValue={token.user.user_metadata.email}
-                    value={formData.Email}
+                    // placeholder="address@gmail.com"
+                    defaultValue={token.session.user.user_metadata.email}
+                    value={token.session.user.user_metadata.email}
                     onChange={handleInputChange}
                     id="Email"
                     name="Email"
+                    readOnly
                   />
                 ) : (
                   <Form.Control
@@ -251,7 +252,7 @@ export const StudentForm = ({ token }) => {
               </Form.Group>
             </Col>
             <Col md={5} className="mb-3">
-              <Form.Group id="validity">
+              <Form.Group id="Validity">
                 <Form.Label>Passing Year</Form.Label>
                 <Form.Control
                   required
@@ -259,8 +260,8 @@ export const StudentForm = ({ token }) => {
                   placeholder="Passing Year"
                   value={formData.ValidityYear}
                   onChange={handleInputChange}
-                  id="validity"
-                  name="validity"
+                  id="ValidityYear"
+                  name="ValidityYear"
                 />
               </Form.Group>
             </Col>
