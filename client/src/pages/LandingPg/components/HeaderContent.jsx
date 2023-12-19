@@ -13,7 +13,7 @@ const HeaderContent = () => {
             <div className="left-text-container">
                <h1 data-aos='zoom-in-right'>Institution Level Verification of inter-state students</h1>
                <p className="white">
-                  xxx enables Institution Level Verification of the students from one state studying in different states.
+                  NSP enables Institution Level Verification of the students from one state studying in different states.
                </p>
                <SecondaryButton name='Registered now' />
             </div>

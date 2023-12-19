@@ -1,31 +1,31 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-scroll'
-import PrimaryButton from './PrimaryButton'
 import logo from '../assets/img/logo.svg'
-// import Slideshow from './Slideshow'
 
 const Navigation = () => {
    return (
       <>
-      <NavigationStyled>
-         <div className="logo mt-5">
-            <img src={logo} alt="" />
-         </div>
-         <ul className='mt-5'>
-            <li>
-               <StyledLink to="header" spy={true} smooth={true}>Home </StyledLink>
-            </li>
-            <li>
-               <StyledLink to="features" spy={true} smooth={true}>Features </StyledLink>
-            </li>
-            <li>
-               <StyledLink to="pricing" spy={true} smooth={true}>Pricing </StyledLink>
-            </li>
-         </ul>
-         <PrimaryButton name='Signup' />
-      </NavigationStyled>
-      {/* <Slideshow/> */}
+         <NavigationStyled>
+            <div className="logo mt-5">
+               <img src={logo} alt="" />
+            </div>
+            <ul className='mt-2'>
+               <li>
+                  <StyledLink to="header" spy={true} smooth={true}>Home</StyledLink>
+               </li>
+               <li>
+                  <StyledLink to="features" spy={true} smooth={true}>Features</StyledLink>
+               </li>
+               <li>
+                  <StyledLink to="pricing" spy={true} smooth={true}>Pricing</StyledLink>
+               </li>
+            </ul>
+            <div className="buttons">
+               <RegisterButton>Register</RegisterButton>
+               <LoginButton>Login</LoginButton>
+            </div>
+         </NavigationStyled>
       </>
    )
 }
@@ -38,7 +38,10 @@ const NavigationStyled = styled.nav`
    ul {
       display: flex;
       justify-content: space-between;
-      width: 40%;
+      align-items: center;
+      gap: 40px;
+      margin-right: 20px;
+      list-style-type: none;
       
       li {
          cursor: pointer;
@@ -53,7 +56,36 @@ const StyledLink = styled(Link)`
    transition: color 0.3s ease;
    
    &:hover {
-      color: #333; /* Change the color on hover if desired */
+      color: #333;
+   }
+`
+
+const RegisterButton = styled.button`
+   /* Add styles for Register button */
+   padding: 10px 20px;
+   border: none;
+   background-color: #272b41;
+   color: white;
+   border-radius: 5px;
+   cursor: pointer;
+   margin-right: 10px;
+
+   &:hover {
+      background-color: #535c8c;
+   }
+`
+
+const LoginButton = styled.button`
+   /* Add styles for Login button */
+   padding: 10px 20px;
+   border: none;
+   background-color: #272b41;
+   color: white;
+   border-radius: 5px;
+   cursor: pointer;
+
+   &:hover {
+      background-color: #535c8c;
    }
 `
 

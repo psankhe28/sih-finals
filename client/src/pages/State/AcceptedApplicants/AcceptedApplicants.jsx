@@ -123,10 +123,10 @@ const AcceptedApplicants = ({ SchemeName }) => {
 
           )}
         </tbody>
-        <button type="button" onClick={getDocuments}>
+      </Table>
+      <button type="button" onClick={getDocuments}>
           Get Documents
         </button>
-      </Table>
       <Modal fullscreen={fullscreen} show={showModal}
         onHide={handleCloseModal}
         dialogClassName="modal-90w"
