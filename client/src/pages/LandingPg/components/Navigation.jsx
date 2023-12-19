@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-scroll'
 import logo from '../assets/img/logo.png'
-
 const Navigation = () => {
    return (
       <>
@@ -22,8 +21,13 @@ const Navigation = () => {
                </li>
             </ul>
             <div className="buttons">
-               <RegisterButton>Register</RegisterButton>
-               <LoginButton>Login</LoginButton>
+            <a href="/signup">
+          <RegisterButton>Register</RegisterButton>
+        </a>
+        <a href="/login">
+          <LoginButton>Login</LoginButton>
+        </a>
+               
             </div>
          </NavigationStyled>
       </>
