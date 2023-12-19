@@ -3,9 +3,9 @@ import jsQR from 'jsqr';
 
 const QRCodeDecoder = () => {
   const verifyDigitalID = async (e) => {
-    // const file = e.target.files[0];
+    const file = e.target.files[0];
 
-    // if (file) {
+    if (file) {
       try {
         const imageUrl = URL.createObjectURL(file);
         // const imageUrl = "https://i.ibb.co/YfPkbGY/Screenshot.png";
@@ -33,7 +33,7 @@ const QRCodeDecoder = () => {
       } catch (error) {
         console.error('Error decoding QR code:', error);
       }
-    // }
+    }
   };
 
   return (

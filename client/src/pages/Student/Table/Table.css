@@ -1,0 +1,29 @@
+.sorting_asc {
+  color: white !important;
+}
+
+.custom-datatable tbody tr {
+  height: 50px;
+}
+
+.custom-datatable thead th {
+  height: 50px;
+}
+
+
+.custom-datatable thead th {
+  background-color: #262a41;
+  color: #f5f4f4;
+}
+
+.mdb-datatable-filter {
+  margin-top: 50px;
+}
+
+.mdb-datatable-filter input[type="search"] {
+  margin-bottom: 100px;
+}
+
+.custom-datatable .dataTables_filter input[type="search"] {
+  margin-bottom: 100px !important;
+}

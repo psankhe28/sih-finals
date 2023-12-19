@@ -8,7 +8,7 @@ import {
 } from './State';
 import { InstitutionProfile } from './Institution';
 import { StudentNav, StateNav, InstituteNav } from './Sidebar';
-// import VerifiedId from "./Student/VerifiedCard/Card"; 
+import VerifiedId from "./Student/VerifiedCard/Card"; 
 
 // components
 import Sidebar from "../components/Sidebar";
@@ -163,6 +163,11 @@ const HomePage = () => {
             path={"/student/schemes"}
             element={<StudentWithSidebar component={Scheme} />}
           />
+          {/* <Route
+            exact
+            path={"/student/view-schemes"}
+            element={<StudentWithSidebar component={StudentScheme} />}
+          /> */}
           <Route
             exact
             path={"/student/applied-schemes"}
@@ -178,11 +183,6 @@ const HomePage = () => {
             exact
             path={"/state/profile"}
             element={<StateWithSidebar component={StateProfile} />}
-          />
-          <Route
-            exact
-            path={"/state/add-schemes"}
-            element={<StateWithSidebar component={AddScheme} />}
           />
           <Route
             exact
