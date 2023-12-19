@@ -190,11 +190,11 @@ const HomePage = () => {
             path={"/institute/pending-applicants"}
             element={<InstitutionWithSidebar component={Pending} />}
           />
-          {/* <Route
+          <Route
             exact
             path={"/usp"}
             element={<Usp/>}
-          /> */}
+          />
 
           {token ? (
             <Route path={"/homepage"} element={<Homepage token={token} />} />
