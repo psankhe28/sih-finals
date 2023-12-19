@@ -19,8 +19,6 @@ const AcceptedApplicants = ({ SchemeName }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedDocument, setSelectedDocument] = useState("");
 
-  // Accessing the img tag inside the iframe and applying styles
-
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -65,6 +63,7 @@ const AcceptedApplicants = ({ SchemeName }) => {
           .eq("InstituteVerified", true)
           .eq("SchemeVerified", true);
         setStudents(data);
+        console.log(data)
       } catch (err) {
         console.log(err);
       }
@@ -113,11 +112,7 @@ const AcceptedApplicants = ({ SchemeName }) => {
                       </td>
                     </>
                   )}
-                  <td>
-                    <button type="button" onClick={getDocuments}>
-                      Get Documents
-                    </button>
-                  </td>
+
                 </tr>
               );
             })
@@ -125,8 +120,12 @@ const AcceptedApplicants = ({ SchemeName }) => {
             <tr>
               <td colSpan="5">No data Found</td>
             </tr>
+
           )}
         </tbody>
+        <button type="button" onClick={getDocuments}>
+          Get Documents
+        </button>
       </Table>
       <Modal fullscreen={fullscreen} show={showModal}
         onHide={handleCloseModal}
@@ -137,8 +136,7 @@ const AcceptedApplicants = ({ SchemeName }) => {
         </Modal.Header>
         <Modal.Body style={{ overflowY: "hidden" }}><iframe
           style={{ width: "100%", height: "100%" }}
-          // src={documentUrl}
-          src='https://tslsjnmdnlctukoilrux.supabase.co/storage/v1/object/public/Documents/5/Undertaking'
+          src={documentUrl}
           title="ha"
 
         ></iframe></Modal.Body>
