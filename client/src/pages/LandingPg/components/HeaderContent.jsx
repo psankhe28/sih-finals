@@ -15,7 +15,9 @@ const HeaderContent = () => {
                <p className="white">
                   NSP enables Institution Level Verification of the students from one state studying in different states.
                </p>
-               <SecondaryButton name='Registered now' />
+               <a href="/signup">
+          <RegisterButton>Register Now!</RegisterButton>
+        </a>
             </div>
          </div>
          <div className="right-content">
@@ -33,7 +35,21 @@ const HeaderContent = () => {
 //    animation: 3s ${keyframes`${bounce}`} infinite;
 // `
 
+const RegisterButton = styled.button`
+   /* Add styles for Register button */
+   padding: 20px 50px;
+   border:  #ffffff 2px;
+   background-color: #000000;
+   color: white;
+   border-radius: 5px;
+   cursor: pointer;
+   margin-right: 10px;
+   font-size: 18px;
 
+   &:hover {
+      background-color: #535c8c;
+   }
+`
 const HeaderContentStyled = styled.div`
    display: grid;
    grid-template-columns: repeat(2, 1fr);

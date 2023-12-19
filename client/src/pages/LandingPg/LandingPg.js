@@ -27,7 +27,6 @@ function LandingPg() {
       <OuterLayout>
         <main>
           <CardSection />
-          <ChartSection />
           <FAQSection />
           <h3>For More such questions, use our bot!</h3>
         </main>
