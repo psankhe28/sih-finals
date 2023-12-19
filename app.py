@@ -1,5 +1,5 @@
-from flask import Flask,request
-from flask_cors import CORS, cross_origin
+from flask import Flask,request,jsonify
+from flask_cors import CORS
 from paddleocr import PaddleOCR
 import re
 import PyPDF2
@@ -167,7 +167,7 @@ def domicile_state():
     except OSError as e:
         print(f"Error deleting temporary image file: {e}")
 
-    return match_res
+    return jsonify(match_res)
 
 @app.route('/domicile_detect/<path>')
 def domicile_detect(path):
