@@ -110,24 +110,6 @@ def verify_aadhar(ext_text):
       return "Correct"
     else:
       return "Incorrect"
-
-
-# @app.route('/domicile_state', methods=['POST'])
-# def domicile_state():
-
-#     if 'file' not in request.files:
-#         return "No file part"
-
-#     uploaded_file = request.files['file']
-
-#     if uploaded_file.filename == '':
-#         return 'No selected file'
-    
-#     data_ext = getOCRList(uploaded_file)
-#     extracted_text = extract_text(data_ext)
-#     extracted_state = extract_state(extracted_text)
-#     match_res = match_data(extracted_state)
-#     return match_res
     
 @app.route('/domicile_state', methods=['POST'])
 def domicile_state():
@@ -142,9 +124,8 @@ def domicile_state():
     _, file_extension = os.path.splitext(uploaded_file.filename)
     file_extension = file_extension.lower()
 
-    print(file_extension)
-
     if file_extension == ".pdf":
+        os.mkdir('uploads/')
         pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], 'uploaded.pdf')
         uploaded_file.save(pdf_path)
         data_ext = getOCRList(pdf_path)
@@ -162,6 +143,7 @@ def domicile_state():
     try:
        if file_extension == ".pdf":
           os.remove(pdf_path)
+          os.rmdir('uploads/')
        elif file_extension == ".jpg" or file_extension == ".jpeg":
           os.remove(image_path)
     except OSError as e:
@@ -169,30 +151,162 @@ def domicile_state():
 
     return jsonify(match_res)
 
-@app.route('/domicile_detect/<path>')
-def domicile_detect(path):
-    data_ext = getOCRList(path)
+@app.route('/domicile_detect', methods=['POST'])
+def domicile_detect():
+    
+    if 'file' not in request.files:
+        return "No file part"
+
+    uploaded_file = request.files['file']
+
+    if uploaded_file.filename == '':
+        return "No selected file"
+
+    _, file_extension = os.path.splitext(uploaded_file.filename)
+    file_extension = file_extension.lower()
+
+    if file_extension == ".pdf":
+        os.mkdir('uploads/')
+        pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], 'uploaded.pdf')
+        uploaded_file.save(pdf_path)
+        data_ext = getOCRList(pdf_path)
+
+    elif file_extension == ".jpg" or file_extension == ".jpeg":
+        image_path = 'temp_image.jpg'
+        uploaded_file.save(image_path)
+        data_ext = getOCRList(image_path)
+
     extracted_text = extract_text(data_ext)
     ver_res = verify_domicile(extracted_text)
-    return ver_res
 
-@app.route('/id_detect/<path>')
-def id_detect(path):
-    data_ext = getOCRList(path)
+    # Remove the temporary image file
+    try:
+       if file_extension == ".pdf":
+          os.remove(pdf_path)
+          os.rmdir('uploads/')
+       elif file_extension == ".jpg" or file_extension == ".jpeg":
+          os.remove(image_path)
+    except OSError as e:
+        print(f"Error deleting temporary image file: {e}")
+
+    return jsonify(ver_res)
+
+@app.route('/id_detect', methods=['POST'])
+def id_detect():
+    
+    if 'file' not in request.files:
+        return "No file part"
+
+    uploaded_file = request.files['file']
+
+    if uploaded_file.filename == '':
+        return "No selected file"
+
+    _, file_extension = os.path.splitext(uploaded_file.filename)
+    file_extension = file_extension.lower()
+
+    if file_extension == ".pdf":
+        os.mkdir('uploads/')
+        pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], 'uploaded.pdf')
+        uploaded_file.save(pdf_path)
+        data_ext = getOCRList(pdf_path)
+
+    elif file_extension == ".jpg" or file_extension == ".jpeg":
+        image_path = 'temp_image.jpg'
+        uploaded_file.save(image_path)
+        data_ext = getOCRList(image_path)
+
     extracted_text = extract_text(data_ext)
     ver_res = verify_id(extracted_text)
-    return ver_res
 
-@app.route('/caste_detect/<path>')
-def caste_detect(path):
-    data_ext = getOCRList(path)
+    # Remove the temporary image file
+    try:
+       if file_extension == ".pdf":
+          os.remove(pdf_path)
+          os.rmdir('uploads/')
+       elif file_extension == ".jpg" or file_extension == ".jpeg":
+          os.remove(image_path)
+    except OSError as e:
+        print(f"Error deleting temporary image file: {e}")
+
+    return jsonify(ver_res)
+
+@app.route('/caste_detect', methods=['POST'])
+def caste_detect():
+
+    if 'file' not in request.files:
+        return "No file part"
+
+    uploaded_file = request.files['file']
+
+    if uploaded_file.filename == '':
+        return "No selected file"
+
+    _, file_extension = os.path.splitext(uploaded_file.filename)
+    file_extension = file_extension.lower()
+
+    if file_extension == ".pdf":
+        os.mkdir('uploads/')
+        pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], 'uploaded.pdf')
+        uploaded_file.save(pdf_path)
+        data_ext = getOCRList(pdf_path)
+
+    elif file_extension == ".jpg" or file_extension == ".jpeg":
+        image_path = 'temp_image.jpg'
+        uploaded_file.save(image_path)
+        data_ext = getOCRList(image_path)    
+
     extracted_text = extract_text(data_ext)
     ver_res = verify_caste(extracted_text)
-    return ver_res
 
-@app.route('/aadhar_detect/<path>')
-def aadhar_detect(path):
-    data_ext = getOCRList(path)
+    # Remove the temporary image file
+    try:
+       if file_extension == ".pdf":
+          os.remove(pdf_path)
+          os.rmdir('uploads/')
+       elif file_extension == ".jpg" or file_extension == ".jpeg":
+          os.remove(image_path)
+    except OSError as e:
+        print(f"Error deleting temporary image file: {e}")
+        
+    return jsonify(ver_res)
+
+@app.route('/aadhar_detect', methods=['POST'])
+def aadhar_detect():
+
+    if 'file' not in request.files:
+        return "No file part"
+
+    uploaded_file = request.files['file']
+
+    if uploaded_file.filename == '':
+        return "No selected file"
+
+    _, file_extension = os.path.splitext(uploaded_file.filename)
+    file_extension = file_extension.lower()
+
+    if file_extension == ".pdf":
+        os.mkdir('uploads/')
+        pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], 'uploaded.pdf')
+        uploaded_file.save(pdf_path)
+        data_ext = getOCRList(pdf_path)
+
+    elif file_extension == ".jpg" or file_extension == ".jpeg":
+        image_path = 'temp_image.jpg'
+        uploaded_file.save(image_path)
+        data_ext = getOCRList(image_path)
+
     extracted_text = extract_text(data_ext)
     ver_res = verify_aadhar(extracted_text)
-    return ver_res
+
+    # Remove the temporary image file
+    try:
+       if file_extension == ".pdf":
+          os.remove(pdf_path)
+          os.rmdir('uploads/')
+       elif file_extension == ".jpg" or file_extension == ".jpeg":
+          os.remove(image_path)
+    except OSError as e:
+        print(f"Error deleting temporary image file: {e}")
+
+    return jsonify(ver_res)
