@@ -9,7 +9,7 @@ import {
 import { InstitutionProfile } from './Institution';
 import { StudentNav, StateNav, InstituteNav } from './Sidebar';
 import VerifiedId from "./Student/VerifiedCard/Card";
-
+import DatatablePage from "./Student/Table/Table";
 // components
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
@@ -18,6 +18,8 @@ import Preloader from "../components/Preloader";
 
 import LandingPg from './LandingPg/LandingPg';
 import ViewScheme from './State/ViewScheme/ViewScheme';
+import StudentScheme from './Student/Schemes/StudentScheme';
+
 
 const StateWithSidebar = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -150,6 +152,11 @@ const HomePage = () => {
             path={"/student/profile"}
             element={<StudentWithSidebar component={StudentProfile} />}
           />
+           <Route
+            exact
+            path={"/student/Table"}
+            element={<StudentWithSidebar component={DatatablePage} />}
+          />
           <Route
             exact
             path={"/student/documents"}
@@ -159,6 +166,11 @@ const HomePage = () => {
             exact
             path={"/student/schemes"}
             element={<StudentWithSidebar component={StudentProfile} />}
+          />
+          <Route
+            exact
+            path={"/student/view-schemes"}
+            element={<StudentWithSidebar component={StudentScheme} />}
           />
           <Route
             exact
@@ -175,11 +187,6 @@ const HomePage = () => {
             exact
             path={"/state/profile"}
             element={<StateWithSidebar component={StateProfile} />}
-          />
-          <Route
-            exact
-            path={"/state/add-schemes"}
-            element={<StateWithSidebar component={AddScheme} />}
           />
           <Route
             exact

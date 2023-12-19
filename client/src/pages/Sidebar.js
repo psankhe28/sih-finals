@@ -10,17 +10,14 @@ export const StudentNav = [
 
 export const StateNav = [
   { title: "Dashboard", link: "/state", icon: faChartPie },
-  { title: "Add Schemes", link: "/state/add-schemes", icon: faChartPie },
-  { title: "View Schemes", link: "/state/view-schemes", icon: faCog },
-  { title: "Accepted Applicants", link: "/state/accepted", icon: faCog },
-  { title: "Pending Applicants", link: "/state/pending", icon: faCog },
-  { title: "Profile", link: "/state/profile", icon: faCog },
+  { title: "Schemes", link: "/state/view-schemes", icon: faCog },
+  { title: "Accepted Applicants", link: "/state/accepted-applicants", icon: faCog },
+  { title: "Pending Applicants", link: "/state/pending-applicants", icon: faCog },
 ];
 
 export const InstituteNav = [
   { title: "Dashboard", link: "/institute", icon: faChartPie },
   { title: "Applicants", link: "/institute/applicants", icon: faChartPie },
   { title: "Verified Applicants", link: "/institute/accepted", icon: faCog },
-  { title: "Pending Applicants", link: "/institute/pending", icon: faCog },
-  { title: "Profile", link: "/institute/profile", icon: faCog },
+  { title: "Pending Applicants", link: "/institute/pending", icon: faCog }
 ];
