@@ -9,6 +9,7 @@ import aos from 'aos'
 import 'aos/dist/aos.css'
 import ScrolledButton from "./components/ScrolledButton";
 import './LandingPg.css'
+import Slideshow from "./components/Slideshow";
 
 function LandingPg() {
 
@@ -19,7 +20,8 @@ function LandingPg() {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
+      <Slideshow/>
       <OuterLayout>
         <main>
           <CardSection />
@@ -28,7 +30,7 @@ function LandingPg() {
           <h3>For More such questions, use our bot!</h3>
         </main>
       </OuterLayout>
-      <Footer />
+      {/* <Footer /> */}
       <ScrolledButton />
     </div>
   );

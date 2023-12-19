@@ -61,7 +61,7 @@ const PendingApplicants = ({ SchemeName }) => {
         .from("Schemes")
         .select("Documents")
         .eq("SchemeName", SchemeName);
-      console.log(data[0].Documents);
+      // console.log(data[0].Documents);
       setDocuments(data[0].Documents);
 
       setFlag(true);
@@ -73,13 +73,13 @@ const PendingApplicants = ({ SchemeName }) => {
   const handleDocument = async (studentid, value) => {
     setDocumentName(value);
     setShowModal(true);
-    console.log("hello");
+    // console.log("hello");
     console.log(value);
     try {
       const { data, error } = supabase.storage
         .from("Documents")
         .getPublicUrl(`${studentid}/${value}`);
-      console.log(data.publicUrl);
+      // console.log(data.publicUrl);
       setDocumentUrl(data.publicUrl);
     } catch (err) {
       console.log(err);
@@ -96,14 +96,14 @@ const PendingApplicants = ({ SchemeName }) => {
           .eq("InstituteVerified", true)
           .eq("SchemeVerified", false);
         setStudents(data);
-        console.log(data)
+        // console.log(data)
       } catch (err) {
         console.log(err);
       }
     };
 
     getStudents();
-    console.log(students)
+    // console.log(students)
   });
 
   const data = {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Zoom } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
+import Navigation from './Navigation';
 
 const Slideshow = () => {
   const images = [
@@ -40,7 +41,8 @@ const Slideshow = () => {
     ),
   };
   return (
-    <div className="">
+    <div className="w-100">
+      <Navigation/>
       <Zoom {...zoomInProperties}>
         {images.map((each, index) => (
           <div
