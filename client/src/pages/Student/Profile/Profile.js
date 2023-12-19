@@ -14,7 +14,7 @@ export default ({token}) => {
       </div>
 
       <Row>
-        <Col xs={12} xl={8}>
+        <Col xs={12} xl={12}>
           <StudentForm token={token} />
         </Col>
       </Row>

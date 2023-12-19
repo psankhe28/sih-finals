@@ -11,9 +11,9 @@ const HeaderContent = () => {
       <HeaderContentStyled>
          <div className="left-content">
             <div className="left-text-container">
-               <h1 data-aos='zoom-in-right'>Smart banking for frelencers</h1>
+               <h1 data-aos='zoom-in-right'>Institution Level Verification of inter-state students</h1>
                <p className="white">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam delectus architecto sed, corrupti sint nobis cumque numquam provident molestias nemo sequi. Accusantium neque laboriosam nemo fugit fuga. At, rem sed.
+                  NSP enables Institution Level Verification of the students from one state studying in different states.
                </p>
                <SecondaryButton name='Registered now' />
             </div>

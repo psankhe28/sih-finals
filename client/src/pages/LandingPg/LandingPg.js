@@ -3,14 +3,13 @@ import CardSection from "./Sections/CardSection";
 import ChartSection from "./Sections/ChartSection";
 import Footer from "./components/Footer";
 import Header from "./Sections/Header";
-import MessagingSection from "./Sections/MessagingSection";
 import FAQSection from "./Sections/FAQSection";
-import PaymentSection from "./Sections/PricingSection";
 import { OuterLayout } from "./styles/Layout";
 import aos from 'aos'
 import 'aos/dist/aos.css'
 import ScrolledButton from "./components/ScrolledButton";
 import './LandingPg.css'
+import Slideshow from "./components/Slideshow";
 
 function LandingPg() {
 
@@ -21,17 +20,17 @@ function LandingPg() {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
+      <Slideshow/>
       <OuterLayout>
         <main>
           <CardSection />
           <ChartSection />
-          <MessagingSection />
-          <PaymentSection />
           <FAQSection />
+          <h3>For More such questions, use our bot!</h3>
         </main>
       </OuterLayout>
-      <Footer />
+      {/* <Footer /> */}
       <ScrolledButton />
     </div>
   );

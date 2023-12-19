@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row, Card, Form, Button } from "@themesberg/react-bootstrap";
 import { supabase } from "../../../client";
+import './Form.css'
 
 export const StudentForm = ({ token }) => {
   const [formData, setFormData] = useState({
@@ -14,7 +15,17 @@ export const StudentForm = ({ token }) => {
     Gender: "",
     Address: "",
     Phone_no: "",
+    ValidityYear:"",
+    InstituteVerified: false,
+    SchemeVerified: false,
+
   });
+  const [files, setFiles] = useState(['aadhaar', 'domicile', 'collegeid']);
+  const [datafile, setDataFile] = useState({});
+  const [tid, setTid] = useState();
+  const handleChange = async (e) => {
+    setDataFile({ ...datafile, [e.target.name]: e.target.files[0] });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +33,16 @@ export const StudentForm = ({ token }) => {
     try {
       const { data, error } = await supabase
         .from("Students")
-        .insert([formData]);
+        .insert([formData])
+        .select('id')
+
+      console.log(data)
+      console.log(data[0].id);
+      setTid(data[0].id);
+      setTid(data[0].id);
+      setTid(data[0].id);
+      setTid(data[0].id);
+
 
       if (error) {
         console.error("Error creating new user:", error.message);
@@ -32,6 +52,27 @@ export const StudentForm = ({ token }) => {
       console.log("New user created successfully:", data);
     } catch (error) {
       console.error("Error creating new user:", error.message);
+    }
+
+    for (let entry of Object.entries(datafile)) {
+      if (!entry[0]) {
+        alert("Please Upload All Required Files");
+        return;
+      }
+    }
+    for (let entry of Object.entries(datafile)) {
+      try {
+        let { data, error } = await supabase.storage
+          .from("Documents")
+          .upload(`${tid}/${entry[0]}`, entry[1], {
+            cacheControl: "3600",
+            upsert: false,
+          });
+        console.group(data);
+        if (error) console.log(error);
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -44,7 +85,7 @@ export const StudentForm = ({ token }) => {
   };
 
   const handleInputChangeGender = (e) => {
-    const {value } = e.target;
+    const { value } = e.target;
 
     // Mapping for Gender values
     const genderValue = {
@@ -195,17 +236,31 @@ export const StudentForm = ({ token }) => {
             </Col>
           </Row>
           <Row>
-            <Col md={12} className="mb-3">
+            <Col md={7} className="mb-3">
               <Form.Group id="institute">
-                <Form.Label>Institution Name</Form.Label>
+                <Form.Label>Institution</Form.Label>
                 <Form.Control
                   required
                   type="text"
-                  placeholder="Enter your institute name"
+                  placeholder="Enter your institute"
                   value={formData.Institute}
                   onChange={handleInputChange}
                   id="Institute"
                   name="Institute"
+                />
+              </Form.Group>
+            </Col>
+            <Col md={5} className="mb-3">
+              <Form.Group id="validity">
+                <Form.Label>Passing Year</Form.Label>
+                <Form.Control
+                  required
+                  type="number"
+                  placeholder="Passing Year"
+                  value={formData.ValidityYear}
+                  onChange={handleInputChange}
+                  id="validity"
+                  name="validity"
                 />
               </Form.Group>
             </Col>
@@ -244,6 +299,23 @@ export const StudentForm = ({ token }) => {
               </Form.Group>
             </Col>
           </Row>
+
+          {files?.map((scheme, index) => {
+            return (
+              <Form.Group className="position-relative mb-3">
+                <Form.Label>{scheme}</Form.Label>
+                <Form.Control
+                  type="file"
+                  required
+                  name={scheme}
+                  onChange={handleChange}
+                />
+
+              </Form.Group>
+
+            );
+          })}
+
           <div className="mt-3">
             <Button variant="primary" type="submit">
               Save All

@@ -12,7 +12,7 @@ import VerifiedId from "./Student/VerifiedCard/Card";
 
 // components
 import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Preloader from "../components/Preloader";
 
@@ -45,8 +45,8 @@ const StateWithSidebar = ({ component: Component, ...rest }) => {
     <>
       <Preloader show={loaded ? false : true} />
       <Sidebar navItemsData={StateNav} />
-      <main className="content">
-        <Navbar />
+      <main className="content mt-4">
+        {/* <Navbar /> */}
         <Component {...rest} />
         <Footer toggleSettings={toggleSettings} showSettings={showSettings} />
       </main>
@@ -79,8 +79,8 @@ const StudentWithSidebar = ({ component: Component, ...rest }) => {
     <>
       <Preloader show={loaded ? false : true} />
       <Sidebar navItemsData={StudentNav} />
-      <main className="content">
-        <Navbar />
+      <main className="content mt-4">
+        {/* <Navbar /> */}
         <Component {...rest} />
         <Footer toggleSettings={toggleSettings} showSettings={showSettings} />
       </main>
@@ -113,8 +113,8 @@ const InstitutionWithSidebar = ({ component: Component, ...rest }) => {
     <>
       <Preloader show={loaded ? false : true} />
       <Sidebar navItemsData={InstituteNav} />
-      <main className="content">
-        <Navbar />
+      <main className="content mt-4">
+        {/* <Navbar /> */}
         <Component {...rest} />
         <Footer toggleSettings={toggleSettings} showSettings={showSettings} />
       </main>
@@ -155,19 +155,9 @@ const HomePage = () => {
           />
           <Route
             exact
-            path={"/student/documents"}
-            element={<StudentWithSidebar component={StudentProfile} />}
-          />
-          <Route
-            exact
             path={"/student/schemes"}
             element={<StudentWithSidebar component={Scheme} />}
           />
-          {/* <Route
-            exact
-            path={"/student/view-schemes"}
-            element={<StudentWithSidebar component={StudentScheme} />}
-          /> */}
           <Route
             exact
             path={"/student/applied-schemes"}

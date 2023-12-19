@@ -22,37 +22,14 @@ const ViewScheme = () => {
         setViewScheme(data || []);
     }
 
-    //   async function handleDelete(id) {
-    //     console.log(id);
-    //     try {
-    //       await supabase.from('Schemes').delete().eq('id', id);
-    //       window.location.reload(true)
-    //     } catch (error) {
-    //       console.error('Error deleting scheme:', error);
-    //     } 
-    //     // finally {
-    //     //   setShowDeleteModal(false);
-    //     //   setSelectedScheme(null);
-    //     // }
-    //   }
     async function handleDelete(id) {
         console.log(id)
-        // const { error } = await supabase
-        //     .from('Schemes')
-        //     .delete()
-        //     .eq('id', id)
-
         try {
             await supabase.from('Schemes').delete().eq('id', id);
             window.location.reload(true)
         } catch (error) {
             console.error('Error deleting scheme:', error);
         }
-        // finally {
-        //   setShowDeleteModal(false);
-        //   setSelectedScheme(null);
-        // }
-
     }
 
 
@@ -74,21 +51,21 @@ const ViewScheme = () => {
                 width: 150,
             },
             {
-                label: <><SortIcon /> Description</>,
+                label: <>Description</>,
                 field: 'SchemeDesc',
-                sort: 'asc',
+                // sort: 'asc',
                 width: 270,
             },
             {
-                label: <><SortIcon /> Documents</>,
+                label: <>Documents</>,
                 field: 'Documents',
-                sort: 'asc',
+                // sort: 'asc',
                 width: 200,
             },
             {
-                label: <><SortIcon /> Details</>,
+                label: <>Details</>,
                 field: 'Details',
-                sort: 'asc',
+                // sort: 'asc',
                 width: 100,
             },
             {
@@ -98,9 +75,9 @@ const ViewScheme = () => {
                 width: 150,
             },
             {
-                label: <><SortIcon /> Actions</>,
+                label: <>Delete</>,
                 field: 'Actions',
-                sort: 'asc',
+                // sort: 'asc',
                 width: 100,
             },
         ],
@@ -112,32 +89,13 @@ const ViewScheme = () => {
             EndDate: scheme.EndDate,
             Actions: (
                 <div className="d-flex justify-content-center align-items-center">
-                    <Button
-                        variant="info"
-                        size="sm"
-                        onClick={() => handleUpdate(scheme)}
-                        className="mx-2"
-                    >
-                        Update
-                    </Button>
-                    {/* <Button
-            variant="danger"
-            size="sm"
-            onClick={() => {
-              setSelectedScheme(scheme);
-              setShowDeleteModal(true);
-            }}
-            className="mx-2"
-          >
-            Delete
-          </Button> */}
                     <button
                         style={{ background: "none", color: 'black' }}
                         onClick={(event) => {
                             // event.stopPropagation();
                             handleDelete(scheme.id);
                         }}
-                    > <i className="fas fa-trash-alt" /></button>
+                    > <i className="fas fa-trash-alt" style={{ fontSize: '1.13em' }} /></button>
                 </div>
             ),
         })),
