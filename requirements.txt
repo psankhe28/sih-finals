@@ -1,0 +1,7 @@
+Flask==2.2.2
+Flask-Cors==3.0.10
+paddleocr==2.7.0.3
+paddlepaddle==2.5.2
+regex==2022.10.31
+PyPDF2==3.0.1
+reportlab==4.0.7
