@@ -8,7 +8,7 @@ import {
 } from './State';
 import { InstitutionProfile } from './Institution';
 import { StudentNav, StateNav, InstituteNav } from './Sidebar';
-import VerifiedId from "./Student/VerifiedCard/Card";
+import VerifiedId from "./Student/VerifiedCard/Card"; 
 
 // components
 import Sidebar from "../components/Sidebar";
