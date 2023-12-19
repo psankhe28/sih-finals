@@ -19,6 +19,7 @@
     "bootstrap": "5.0.0-beta1",
     "html2canvas": "^1.4.1",
     "mdbreact": "^5.2.0",
+    "jsqr": "^1.4.0",
     "moment-timezone": "^0.5.43",
     "mui": "^0.0.1",
     "react": "^18.2.0",

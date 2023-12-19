@@ -9,21 +9,6 @@
     height: 50px; /* Adjust the height as needed */
   }
 
-
-
-/* Add styles for the custom-datatable class to change row colors and text color */
-.custom-datatable tbody tr:nth-child(even) {
-    background-color: #ffffff; /* Background color for even rows */
-    color: 
-    #000000; /* Text color for even rows */
-  }
-  
-  .custom-datatable tbody tr:nth-child(odd) {
-    background-color: #ceebf5; /* Background color for odd rows */
-    color: #0000
-    00; /* Text color for odd rows */
-  }
-  
   .custom-datatable thead th {
     background-color: #262a41; /* Background color for header row */
     color: #f5f4f4; /* Text color for header row */

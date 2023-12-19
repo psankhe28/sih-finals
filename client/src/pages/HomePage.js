@@ -8,8 +8,8 @@ import {
 } from './State';
 import { InstitutionProfile } from './Institution';
 import { StudentNav, StateNav, InstituteNav } from './Sidebar';
-import VerifiedId from "./Student/VerifiedCard/Card";
-import DatatablePage from "./Student/Table/Table";
+import VerifiedId from "./Student/VerifiedCard/Card"; 
+
 // components
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
@@ -18,8 +18,9 @@ import Preloader from "../components/Preloader";
 
 import LandingPg from './LandingPg/LandingPg';
 import ViewScheme from './State/ViewScheme/ViewScheme';
-import StudentScheme from './Student/Schemes/StudentScheme';
-
+import Scheme from './Student/Schemes/Scheme';
+import SchemeHistory from './Student/SchemeHistory/SchemeHistory';
+import Usp from '../UniqueSellingPoint/verifyDigitalID'
 
 const StateWithSidebar = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
@@ -152,11 +153,6 @@ const HomePage = () => {
             path={"/student/profile"}
             element={<StudentWithSidebar component={StudentProfile} />}
           />
-           <Route
-            exact
-            path={"/student/Table"}
-            element={<StudentWithSidebar component={DatatablePage} />}
-          />
           <Route
             exact
             path={"/student/documents"}
@@ -165,17 +161,17 @@ const HomePage = () => {
           <Route
             exact
             path={"/student/schemes"}
-            element={<StudentWithSidebar component={StudentProfile} />}
+            element={<StudentWithSidebar component={Scheme} />}
           />
-          <Route
+          {/* <Route
             exact
             path={"/student/view-schemes"}
             element={<StudentWithSidebar component={StudentScheme} />}
-          />
+          /> */}
           <Route
             exact
             path={"/student/applied-schemes"}
-            element={<StudentWithSidebar component={StudentProfile} />}
+            element={<StudentWithSidebar component={SchemeHistory} />}
           />
           <Route
             exact
@@ -219,6 +215,11 @@ const HomePage = () => {
             path={"/institute/pending-applicants"}
             element={<InstitutionWithSidebar component={InstitutionProfile} />}
           />
+          {/* <Route
+            exact
+            path={"/usp"}
+            element={<Usp/>}
+          /> */}
 
           {token ? <Route path={'/homepage'} element={<Homepage token={token} />} /> : ""}
 
