@@ -164,7 +164,7 @@ const HomePage = () => {
             path={"/student/verified-card"}
             element={<StudentWithSidebar component={VerifiedId} />}
           /> */}
-          <Route path={"/card"} element={<VerifiedId token={token} />} />
+          {/* <Route path={"/card"} element={<VerifiedId token={token} />} /> */}
           <Route
             exact
             path={"/state/profile"}
