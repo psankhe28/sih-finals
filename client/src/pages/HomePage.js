@@ -18,13 +18,9 @@ import Preloader from "../components/Preloader";
 
 import LandingPg from './LandingPg/LandingPg';
 import ViewScheme from './State/ViewScheme/ViewScheme';
-<<<<<<< HEAD
-import Table from './Student/FileUpload/Table';
-=======
 import Scheme from './Student/Schemes/Scheme';
 import SchemeHistory from './Student/SchemeHistory/SchemeHistory';
 import Usp from '../UniqueSellingPoint/verifyDigitalID'
->>>>>>> c0c0a2cb48e89771ddda5bb779aa81fdf2360df9
 
 const StateWithSidebar = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
