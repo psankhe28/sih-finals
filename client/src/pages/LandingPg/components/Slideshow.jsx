@@ -4,10 +4,10 @@ import 'react-slideshow-image/dist/styles.css';
 
 const Slideshow = () => {
   const images = [
-    'https://github.com/saRvaGnyA/ReachOut-SIH-Prototype/blob/2bdc9630f7669d5b18538cf80c08d532e5407684/client/public/banner_1.jpg',
-    '../assets/banners/banner2.png',
-    '../assets/banners/banner3.jpeg',
-    '../assets/banners/banner4.jpeg',
+    'https://reach-out-sih-prototype.vercel.app/banner_1.jpg',
+    'https://reach-out-sih-prototype.vercel.app/banner_2.jpg',
+    'https://reach-out-sih-prototype.vercel.app/banner_3.jpg',
+    'https://reach-out-sih-prototype.vercel.app/banner_4.jpg',
   ];
 
   const zoomInProperties = {

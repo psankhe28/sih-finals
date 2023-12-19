@@ -155,19 +155,9 @@ const HomePage = () => {
           />
           <Route
             exact
-            path={"/student/documents"}
-            element={<StudentWithSidebar component={Table} />}
-          />
-          <Route
-            exact
             path={"/student/schemes"}
             element={<StudentWithSidebar component={Scheme} />}
           />
-          {/* <Route
-            exact
-            path={"/student/view-schemes"}
-            element={<StudentWithSidebar component={StudentScheme} />}
-          /> */}
           <Route
             exact
             path={"/student/applied-schemes"}
