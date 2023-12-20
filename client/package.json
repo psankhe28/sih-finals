@@ -43,10 +43,11 @@
     "react-scroll": "^1.9.0",
     "react-slideshow-image": "^4.3.0",
     "react-table": "^7.8.0",
+    "react-toastify": "^9.1.3",
     "react-transition-group": "^4.4.1",
     "sass": "^1.50.0",
     "simplebar-react": "^2.3.0",
-    "styled-components": "^6.1.1",
+    "styled-components": "^6.1.2",
     "three": "^0.159.0",
     "web3.storage": "^4.5.5"
   },

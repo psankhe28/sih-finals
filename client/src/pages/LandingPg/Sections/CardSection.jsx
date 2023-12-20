@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import { InnerLayout } from '../styles/Layout'
 import card from '../assets/img/creditcard.svg'
 import { fadeInLeft } from 'react-animations'
+import { Link, useNavigate } from 'react-router-dom';
 
 const CardSection = () => {
    return (
@@ -16,6 +17,12 @@ const CardSection = () => {
                   <p>
                      Unlocking Possibilities, One Click at a Time - Explore, Connect, and Thrive with Us
                   </p>
+                  <p>
+                  Attention government and private organizations! If you're eager to offer scholarships to deserving students across the nation, ensure authenticity with NSID verification right here!
+                  </p>
+                  <Link to='/other/usp'><button className="button transparent" id="sign-up-button" >
+                  Verify NSID
+                  </button></Link>
                </div>
                <div className="card-right">
                   {/* <img src='{card}' alt="" /> */}

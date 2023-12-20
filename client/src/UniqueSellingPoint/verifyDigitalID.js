@@ -1,23 +1,26 @@
 import jsQR from 'jsqr';
-import React, { useEffect, useState, useRef } from "react";
-import { Image, Table } from "@themesberg/react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
-import { supabase } from "../client";
-import { Modal } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import { MDBDataTable } from 'mdbreact';
 import SortIcon from '@mui/icons-material/Sort';
-import Button from "react-bootstrap/Button";
-import './verifyDigitalId.css'
+import { supabase } from "../client";
+import './verifyDigitalId.css';
+import { Link } from 'react-router-dom';
+
 
 const QRCodeDecoder = () => {
+  const [students, setStudents] = useState([]);
+  const [documents, setDocuments] = useState([]);
+  const [documentName, setDocumentName] = useState("Aadhaar");
+  const [documentUrl, setDocumentUrl] = useState("");
+  const [flag, setFlag] = useState(false);
+  const [upload, setUpload] = useState();
+
   const verifyDigitalID = async (e) => {
     const file = e.target.files[0];
 
     if (file) {
       try {
         const imageUrl = URL.createObjectURL(file);
-        // const imageUrl = "https://i.ibb.co/YfPkbGY/Screenshot.png";
         const img = new Image();
         img.src = imageUrl;
         img.crossOrigin = 'Anonymous';
@@ -35,6 +38,7 @@ const QRCodeDecoder = () => {
 
           if (code) {
             console.log('QR Code value:', code.data);
+            setUpload(code.data);
           } else {
             console.log('No QR code found.');
           }
@@ -45,57 +49,50 @@ const QRCodeDecoder = () => {
     }
   };
 
-  const [students, setStudents] = useState([]);
-  const [fullscreen, setFullscreen] = useState(true);
-  const [documents, setDocuments] = useState([]);
-  const [documentName, setDocumentName] = useState("Aadhaar");
-  const [documentUrl, setDocumentUrl] = useState("");
-  const [flag, setFlag] = useState(false);
-
-  const [showModal, setShowModal] = useState(false);
-  const [selectedDocument, setSelectedDocument] = useState("");
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-
-
   const handleDocument = async (studentid, value) => {
     setDocumentName(value);
-    setShowModal(true);
-    // console.log("hello");
-    console.log(value);
-    console.log(value);
+
     try {
-      const { data, error } = supabase.storage
+      const { data, error } = await supabase.storage
         .from("Documents")
         .getPublicUrl(`${studentid}/${value}`);
-      // console.log(data.publicUrl);
+
+      if (error) {
+        console.error('Error fetching document URL:', error);
+        return;
+      }
+
       setDocumentUrl(data.publicUrl);
     } catch (err) {
-      console.log(err);
+      console.error('Error fetching document URL:', err);
     }
   };
+
   useEffect(() => {
     const getStudents = async () => {
       try {
         let { data, error } = await supabase
           .from("Students")
           .select("*")
-          // .eq("SchemeName", SchemeName)
           .eq("InstituteVerified", true)
-          .eq("SchemeVerified", true);
+          .eq("SchemeVerified", true)
+          .eq('uid','19')
+        
+        console.log(data);
+
+        if (error) {
+          console.error('Error fetching students:', error);
+          return;
+        }
+
         setStudents(data);
-        // console.log(data)
       } catch (err) {
-        console.log(err);
+        console.error('Error fetching students:', err);
       }
     };
 
     getStudents();
-    // console.log(students)
-  });
+  }, []);
 
   const data = {
     columns: [
@@ -105,51 +102,46 @@ const QRCodeDecoder = () => {
         sort: 'asc',
         width: 150,
       },
+      // ... other columns
       {
-        label: <>College Name</>,
-        field: 'ClgName',
-        sort: 'asc',
-        width: 270,
+        label: <>HomeState</>,
+        field: 'HomeState',
+        width: 200,
       },
       {
-        label: <>Scheme Name</>,
-        field: 'SchemeName',
-        sort: 'asc',
-        width: 270,
+        label: <>Institute</>,
+        field: 'Institute',
+        width: 200,
       },
       {
-        label: <>Details</>,
-        field: 'additionalDetails',
-        sort: 'asc',
-        width: 270,
-      },
-      {
-        label: <>Documents</>,
-        field: 'Documents',
-        // sort: 'asc',
+        label: <>Status</>,
+        field: 'verify',
         width: 200,
       }
     ],
     rows: students.map((student) => ({
       Name: student.Name,
-      ClgName: student.Institute,
-      SchemeName: student.SchemeName,
-      additionalDetails: student.additionalDetails,
+      HomeState: student.HomeState,
+      Institute: student.Institute,
+      verify: student.cid === upload ? 'VERIFIED' : 'NOT VERIFIED',
+      // ... other fields
       Documents: (
         <>
-          {flag ? <select
-            name="documents"
-            id="documents"
-            className="custom-dropdown"
-            onChange={(e) => handleDocument(student.id, e.target.value)}
-          >
-            <option value="">Select document</option>
-            {documents.map((document) => (
-              <option key={document} value={document}>
-                {document}
-              </option>
-            ))}
-          </select> : ''}
+          {flag && (
+            <select
+              name="documents"
+              id="documents"
+              className="custom-dropdown"
+              onChange={(e) => handleDocument(student.id, e.target.value)}
+            >
+              <option value="">Select document</option>
+              {documents.map((document) => (
+                <option key={document} value={document}>
+                  {document}
+                </option>
+              ))}
+            </select>
+          )}
         </>
       )
     })),
@@ -162,10 +154,9 @@ const QRCodeDecoder = () => {
 
   return (
     <div className='m-5'>
-      <h1>QR Code Decoder</h1>
+      <h1>Verify NSID</h1>
       <input type="file" accept="image/*" onChange={verifyDigitalID} />
-      <p>Select an image file to decode QR code.</p>
-      <p>Check the console for QR code value.</p>
+      <p>Student uploads NSID</p>
       <MDBDataTable
         className="custom-datatable"
         striped
@@ -174,6 +165,10 @@ const QRCodeDecoder = () => {
         data={data}
         noBottomColumns={noBottomColumns}
       />
+
+<Link to='/'><button className="button transparent" id="sign-up-button" >
+                  Back to Homepage
+                  </button></Link>
     </div>
   );
 };
