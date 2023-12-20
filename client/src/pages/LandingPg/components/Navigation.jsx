@@ -2,21 +2,38 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-scroll'
 import logo from '../assets/img/logo.png'
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media (max-width: 570px) {
+    flex-direction: column;
+
+    a {
+      width: 100%;
+      margin-bottom: 10px; /* Adjust spacing */
+    }
+  }
+`;
 const Navigation = () => {
    return (
       <>
          <NavigationStyled>
             <div className="logo mt-2 mb-2">
-               <img src={logo} alt="" style={{height:'72px'}} />
+               <img src={logo} alt="" style={{ height: '72px' }} />
             </div>
             <div className="buttons">
-            <a href="/signup">
-          <RegisterButton>Register</RegisterButton>
-        </a>
-        <a href="/login">
-          <LoginButton>Login</LoginButton>
-        </a>
-               
+               <ButtonsContainer>
+                  <a href="/signup">
+                     <RegisterButton>Register</RegisterButton>
+                  </a>
+                  <a href="/login">
+                     <LoginButton>Login</LoginButton>
+                  </a>
+               </ButtonsContainer>
             </div>
          </NavigationStyled>
       </>

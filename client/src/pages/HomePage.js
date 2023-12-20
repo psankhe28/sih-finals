@@ -191,15 +191,9 @@ const HomePage = () => {
           />
           <Route
             exact
-            path={"/usp"}
+            path={"/other/usp"}
             element={<Usp/>}
           />
-
-          {token ? (
-            <Route path={"/homepage"} element={<Homepage token={token} />} />
-          ) : (
-            ""
-          )}
         </Routes>
       </BrowserRouter>
       <df-messenger

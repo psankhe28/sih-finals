@@ -37,7 +37,7 @@ function VerifiedId({ token }) {
             <div className="container">
               <div className="svg-background"></div>
               <div className="svg-background2"></div>
-              <img className="circle" src="https://lh3.googleusercontent.com/drive-viewer/AEYmBYRBILjERIPIkY5_fkQ_Oyj5h3pkQnSjhQmIP58TXSlCSKLLV8DJc3rPoYz_mn6YAPed0y02q5pz69lmmSo3uPJNsZxdXA=s2560" />
+              <img className="circle" src="https://i.ibb.co/tpFcxTp/frame.png" />
               <img className="menu-icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX8bwMUY5bEE4hbboV3x_GDRVXQ92gruVu7Wr9-PqDqQ&s" />
               <div className="text-container">
                 <p className="title-text">{name}</p>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Col, Row, Card, Form, Button } from "@themesberg/react-bootstrap";
 import { supabase } from "../../../client";
 import './Form.css'
@@ -17,7 +17,7 @@ export const StudentForm = ({ token }) => {
     Gender: "",
     Address: "",
     Phone_no: token.user.phone,
-    ValidityYear:"",
+    ValidityYear: "",
     InstituteVerified: false,
     SchemeVerified: false,
 
@@ -95,15 +95,12 @@ export const StudentForm = ({ token }) => {
       setTid(data[0].id);
       setTid(data[0].id);
 
-
       if (error) {
         console.error("Error creating new user:", error.message);
         return;
-      }
-
-      console.log("New user created successfully:", data);
+      }      
     } catch (error) {
-      console.error("Error creating new user:", error.message);
+      console.log(error)
     }
 
     for (let entry of Object.entries(datafile)) {
@@ -151,6 +148,31 @@ export const StudentForm = ({ token }) => {
       Gender: genderValue[value],
     }));
   };
+
+  const [institutes, setInstitutes] = useState([]);
+  
+  useEffect(() => {
+    const fetchInstitutes = async () => {
+      try {
+        let { data: fetchedInstitutes, error } = await supabase
+          .from('Institutes')
+          .select('Name');
+
+        if (error) {
+          // Handle error
+          return;
+        }
+
+        // Set the fetched institute names in the state
+        setInstitutes(fetchedInstitutes);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    // Call the function to fetch institutes
+    fetchInstitutes();
+  }, []);
 
   return (
     <Card border="light" className="bg-white shadow-sm mb-4">
@@ -293,7 +315,7 @@ export const StudentForm = ({ token }) => {
             <Col md={7} className="mb-3">
               <Form.Group id="institute">
                 <Form.Label>Institution</Form.Label>
-                <Form.Control
+                {/* <Form.Control
                   required
                   type="text"
                   placeholder="Enter your institute"
@@ -301,7 +323,23 @@ export const StudentForm = ({ token }) => {
                   onChange={handleInputChange}
                   id="Institute"
                   name="Institute"
-                />
+                /> */}
+                <Form.Control
+                  required
+                  as="select"
+                  placeholder="Select your institute"
+                  value={formData.Institute}
+                  onChange={handleInputChange}
+                  id="Institute"
+                  name="Institute"
+                >
+                  <option value="">Select an institute</option>
+                  {institutes.map((institute, index) => (
+                    <option key={index} value={institute.Name}>
+                      {institute.Name}
+                    </option>
+                  ))}
+                </Form.Control>
               </Form.Group>
             </Col>
             <Col md={5} className="mb-3">

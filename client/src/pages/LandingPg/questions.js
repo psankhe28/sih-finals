@@ -22,13 +22,7 @@ const questions = [
     title: "Is the information provided through your platform secure?",
     description:
       "Absolutely. Protecting your data is our top priority. We employ robust security measures compliant with industry standards to ensure confidentiality and safeguard all information shared on our platform."
-  },
-  {
-    id: 5,
-    title: "Can I track the status of my document verification request?",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni voluptate unde vero corporis tempora praesentium laboriosam ratione incidunt a odit.",
-  },
+  }
 ];
 
 export default questions;
