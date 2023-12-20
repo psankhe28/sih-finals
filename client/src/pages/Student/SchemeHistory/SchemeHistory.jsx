@@ -10,6 +10,20 @@ const SchemeHistory = ({ token }) => {
   let id;
   const [schemes, setSchemes] = useState([]);
   useEffect(() => {
+    const getInfo = async () => {
+      try {
+        let { data, error } = await supabase
+          .from("Students")
+          .select("id")
+          .eq("Email", email)
+          .eq("Name", name)
+        console.log(data);
+        id = data[0]['id'];
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getInfo()
     const getSchemes = async () => {
       try {
         let { data, error } = await supabase
@@ -26,20 +40,6 @@ const SchemeHistory = ({ token }) => {
     };
     console.log(schemes);
     getSchemes();
-    const getInfo = async () => {
-      try {
-        let { data, error } = await supabase
-          .from("Students")
-          .select("id")
-          .eq("Email", email)
-          .eq("Name", name)
-        console.log(data);
-        data[0]['id'] = id;
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getInfo()
   }, []);
 
   const data = {

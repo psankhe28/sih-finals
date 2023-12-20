@@ -83,8 +83,17 @@ const Login = ({ setToken }) => {
             if (error) throw error
             console.log(data)
             setToken(data)
+            if (level === 'student') {
+                navigate('/student/profile')
+            }
+            else if (level === 'state') {
+                navigate('/state/view-schemes')
+            }
+            else {
+                navigate('/institute/pending-applicants')
+            }
             //history.push('/homepage')
-            navigate('/homepage')
+            // navigate('/homepage')
             //   alert('Check your email for verification link')
 
         } catch (error) {

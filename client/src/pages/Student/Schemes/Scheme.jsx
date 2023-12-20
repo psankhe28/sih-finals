@@ -10,8 +10,10 @@ const Scheme = ({ token }) => {
   const name = token.user.user_metadata.full_name;
   console.log(email)
   console.log(name)
+  const [state, setState] = useState(null);
+  const [id, setId] = useState(null);
 
-  let id, state;
+  // let id, state;
 
 
   const [show, setShow] = useState(false);
@@ -23,6 +25,7 @@ const Scheme = ({ token }) => {
   const [documents, setDocuments] = useState([])
   const [applyschemeData, setApplyschemeData] = useState('')
   const [studentSchemeDetails, setStudentSchemeDetails] = useState({});
+  const [schemes, setSchemes] = useState([]);
   const [files, setFiles] = useState({});
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -41,38 +44,117 @@ const Scheme = ({ token }) => {
     setFiles({ ...files, [e.target.name]: e.target.files[0] });
   };
 
-  const [schemes, setSchemes] = useState([]);
-
   useEffect(() => {
+    // Function to get information about a student
     const getInfo = async () => {
-      try {
-        let { data, error } = await supabase
-          .from("Students")
-          .select('*')
-          .eq("Email", email)
-          .eq("Name", name)
-        console.log(data);
-        // data[0]['InstituteVerified'] = InstituteVerified;
-      } catch (err) {
-        console.log(err);
-      }
+        try {
+            // Making a request to the Supabase database to get student information
+            let { data, error } = await supabase
+                .from("Students")
+                .select('*')
+                .eq("Email", email)
+                .eq("Name", name);
+
+            // Extracting the HomeState and ID from the received data
+            const studentState = data[0].HomeState;
+            const studentId = data[0].id;
+
+            // Updating the component state using set functions
+            setState(studentState);
+            setId(studentId);
+
+            console.log(studentState);
+            // data[0]['InstituteVerified'] = InstituteVerified;
+        } catch (err) {
+            // Handling errors if any occur during the database request
+            console.log(err);
+        }
     };
-    getInfo()
+
+    // Function to get schemes based on the state of the student
     const getSchemes = async () => {
-      try {
-        let { data, error } = await supabase
-          .from("Schemes")
-          .select("*")
-          .eq("State", state);
-        console.log(data);
-        setSchemes(data);
-      } catch (err) {
-        console.log(err);
-      }
+        try {
+            // Logging the state value to the console
+            console.log(state);
+
+            // Making a request to the Supabase database to get schemes based on the state
+            let { data, error } = await supabase
+                .from("Schemes")
+                .select("*")
+                .eq("State", state);
+
+            // Logging the retrieved schemes to the console
+            console.log(data);
+
+            // Setting the retrieved schemes in the component's state
+            setSchemes(data);
+        } catch (err) {
+            // Handling errors if any occur during the database request
+            console.log(err);
+        }
     };
+
+    // Logging the schemes to the console
     console.log(schemes);
+
+    // Calling the getInfo and getSchemes functions when the component is rendered
+    getInfo();
     getSchemes();
-  }, []);
+}, [email, name, state]); // Include relevant dependencies in the dependency array
+
+
+
+
+  // const getInfo = async () => {
+  //   try {
+  //     let { data, error } = await supabase
+  //       .from("Students")
+  //       .select('*')
+  //       .eq("Email", email)
+  //       .eq("Name", name)
+  //       setState = data[0].HomeState;
+  //       setState = data[0].HomeState;
+  //       setState = data[0].HomeState;
+  //       setState = data[0].HomeState;
+  //       setState = data[0].HomeState;
+  //       setState = data[0].HomeState;
+  //       setState = data[0].HomeState;
+  //       setState = data[0].HomeState;
+  //       setState = data[0].HomeState;
+  //       setState = data[0].HomeState;
+  //       setState = data[0].HomeState;
+  //       setState = data[0].HomeState;
+  //       setId = data[0].id;
+  //       setId = data[0].id;
+  //       setId = data[0].id;
+  //       setId = data[0].id;
+  //     console.log(state);
+  //     // data[0]['InstituteVerified'] = InstituteVerified;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+  // useEffect(() => {
+   
+  //   getInfo();
+  //   const getSchemes = async () => {
+  //     try {
+  //       console.log(state)
+  //       let { data, error } = await supabase
+  //         .from("Schemes")
+  //         .select("*")
+  //         .eq("State", state);
+  //       console.log(data);
+  //       setSchemes(data);
+
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   console.log(schemes);
+   
+  //   getSchemes();
+  // },[state]);
 
   async function handleApply(id) {
 
