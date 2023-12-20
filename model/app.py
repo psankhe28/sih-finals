@@ -138,7 +138,6 @@ def domicile_state():
     extracted_text = extract_text(data_ext)
     extracted_state = extract_state(extracted_text)
     match_res = match_data(extracted_state)
-
     # Remove the temporary image file
     try:
        if file_extension == ".pdf":
@@ -151,7 +150,7 @@ def domicile_state():
 
     return jsonify(match_res)
 
-@app.route('/domicile_detect', methods=['POST'])
+@app.route('/domicile', methods=['POST'])
 def domicile_detect():
     
     if 'file' not in request.files:
@@ -191,7 +190,7 @@ def domicile_detect():
 
     return jsonify(ver_res)
 
-@app.route('/id_detect', methods=['POST'])
+@app.route('/collegeid', methods=['POST'])
 def id_detect():
     
     if 'file' not in request.files:
@@ -271,7 +270,7 @@ def caste_detect():
         
     return jsonify(ver_res)
 
-@app.route('/aadhar_detect', methods=['POST'])
+@app.route('/aadhaar', methods=['POST'])
 def aadhar_detect():
 
     if 'file' not in request.files:

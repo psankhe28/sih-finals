@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Col, Row, Card, Form, Button } from "@themesberg/react-bootstrap";
 import { supabase } from "../../../client";
 import './Form.css'
+import { Spinner } from "react-bootstrap";
+import { MDBIcon } from 'mdb-react-ui-kit';
 
 export const StudentForm = ({ token }) => {
   const [formData, setFormData] = useState({
@@ -23,13 +25,64 @@ export const StudentForm = ({ token }) => {
   const [files, setFiles] = useState(['aadhaar', 'domicile', 'collegeid']);
   const [datafile, setDataFile] = useState({});
   const [tid, setTid] = useState();
+  const [aadhaarFlag, setAadhaarFlag] = useState(null);
+  const [domicileFlag, setDomicileFlag] = useState(null);
+  const [collegeidFlag, setCollegeidFlag] = useState(null);
+
+  const [aadhaarWheelFlag, setAadhaarWheelflag] = useState(false);
+  const [domicileWheelFlag, setDomicileWheelFlag] = useState(false);
+  const [collegeidWheelFlag, setCollegeidWheelFlag] = useState(false);
+  
+
   const handleChange = async (e) => {
+    console.log(e.target.name);
     setDataFile({ ...datafile, [e.target.name]: e.target.files[0] });
+
+    if(e.target.name==='aadhaar')
+      setAadhaarWheelflag(true);
+    else if(e.target.name==='domicile')
+      setDomicileWheelFlag(true);
+    else if(e.target.name==='collegeid')
+      setCollegeidWheelFlag(true);
+
+    const formData = new FormData();
+    formData.append('file',e.target.files[0])
+    try {
+      
+    
+      const response = await fetch(`http://127.0.0.1:5000/${e.target.name}`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+      console.log(e.target.name, data);
+      if(e.target.name==='aadhaar')
+          setAadhaarFlag(data==='Correct'?true:false);
+      else if(e.target.name==='domicile')
+          setDomicileFlag(data==='Correct'?true:false);
+      else if(e.target.name==='collegeid')
+          setCollegeidFlag(data==='Correct'?true:false)
+          setAadhaarWheelflag(false);
+          setDomicileWheelFlag(false);
+          setCollegeidWheelFlag(false);
+    }
+    catch(error){
+      console.log(error);
+    } 
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      if(!aadhaarFlag || !domicileFlag || !collegeidFlag){
+        console.log(aadhaarFlag, domicileFlag, collegeidFlag)
+        console.error("The format is not as per the standards please resubmit the documents");
+        return;
+      }
+      else{
+        console.log("all files are correct");
+      }
       const { data, error } = await supabase
         .from("Students")
         .insert([formData])
@@ -59,20 +112,20 @@ export const StudentForm = ({ token }) => {
         return;
       }
     }
-    for (let entry of Object.entries(datafile)) {
-      try {
-        let { data, error } = await supabase.storage
-          .from("Documents")
-          .upload(`${tid}/${entry[0]}`, entry[1], {
-            cacheControl: "3600",
-            upsert: false,
-          });
-        console.group(data);
-        if (error) console.log(error);
-      } catch (err) {
-        console.log(err);
-      }
-    }
+    // for (let entry of Object.entries(datafile)) {
+    //   try {
+    //     let { data, error } = await supabase.storage
+    //       .from("Documents")
+    //       .upload(`${tid}/${entry[0]}`, entry[1], {
+    //         cacheControl: "3600",
+    //         upsert: false,
+    //       });
+    //     console.group(data);
+    //     if (error) console.log(error);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
   };
 
   const handleInputChange = (e) => {
@@ -303,6 +356,7 @@ export const StudentForm = ({ token }) => {
 
           {files?.map((scheme, index) => {
             return (
+              <>
               <Form.Group className="position-relative mb-3">
                 <Form.Label>{scheme}</Form.Label>
                 <Form.Control
@@ -313,7 +367,56 @@ export const StudentForm = ({ token }) => {
                 />
 
               </Form.Group>
-
+              {scheme==='aadhaar' && aadhaarWheelFlag && (
+                <Spinner
+                  animation="border"
+                  role="status"
+                  variant="primary"
+                  className="position-relative mb-3"
+                >
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              )}
+               {scheme==='domicile' && domicileWheelFlag && (
+                <Spinner
+                  animation="border"
+                  role="status"
+                  variant="primary"
+                  className="position-relative mb-3"
+                >
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              )}
+              {scheme==='collegeid' && collegeidWheelFlag && (
+                <Spinner
+                  animation="border"
+                  role="status"
+                  variant="primary"
+                  className="position-relative mb-3"
+                >
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              )}
+               {scheme==='aadhaar' && aadhaarFlag && (
+                <MDBIcon fas icon="check" className='text-success' />
+              )}
+              {scheme==='domicile' && domicileFlag && (
+                <MDBIcon fas icon="check" className='text-success'/>
+              )}
+              {scheme==='collegeid' && collegeidFlag && (
+                <MDBIcon fas icon="check" className='text-success'/>
+              )}
+               {scheme==='aadhaar' && !aadhaarFlag && !aadhaarWheelFlag && (
+                <MDBIcon fas icon="times" className='text-error'/>
+              )}
+              {scheme==='domicile' && !domicileFlag && !domicileWheelFlag && (
+                <MDBIcon fas icon="times" className='text-error'/>
+              )}
+              {scheme==='collegeid' && !collegeidFlag && !collegeidWheelFlag && (
+                <MDBIcon fas icon="times" className='text-error'/>
+              )}
+              
+</>
             );
           })}
 
