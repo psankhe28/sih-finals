@@ -9,8 +9,9 @@ import SortIcon from "@mui/icons-material/Sort";
 import Button from "react-bootstrap/Button";
 import "./Pending.css";
 
-const PendingApplicants = ({ InstituteName }) => {
-  InstituteName = "vjti";
+const PendingApplicants = ({ token }) => {
+  const InstituteName = token.user.user_metadata.instituteName;
+  
   const [students, setStudents] = useState([]);
   const [fullscreen, setFullscreen] = useState(true);
   const documents = ["aadhaar", "domicile", "collegeid"];

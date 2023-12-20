@@ -24,6 +24,7 @@ const Scheme = ({ token }) => {
   const [details, setDetails] = useState([])
   const [documents, setDocuments] = useState([])
   const [applyschemeData, setApplyschemeData] = useState('')
+  const [schemeName, setSchemeName] = useState()
   const [studentSchemeDetails, setStudentSchemeDetails] = useState({});
   const [schemes, setSchemes] = useState([]);
   const [files, setFiles] = useState({});
@@ -166,6 +167,9 @@ const Scheme = ({ token }) => {
         .select("*")
         .eq("id", id);
       setApplyschemeData(data);
+
+      setSchemeName(data[0].SchemeName);
+
       setDetails(Object.values(applyschemeData[0].Details));
       setDocuments(Object.values(applyschemeData[0].Documents));
       console.log(data);
@@ -182,7 +186,7 @@ const Scheme = ({ token }) => {
     const { data, error } = await supabase
       .from('Students')
       .insert([
-        { 'additionalDetails': studentSchemeDetails, 'id': id }
+        { 'additionalDetails': studentSchemeDetails, 'id': id,'SchemeName': schemeName  }
 
       ])
       .select()

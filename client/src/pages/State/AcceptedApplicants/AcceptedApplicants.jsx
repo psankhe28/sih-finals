@@ -82,42 +82,13 @@ const AcceptedApplicants = ({ SchemeName }) => {
         field: 'SchemeName',
         sort: 'asc',
         width: 270,
-      },
-      {
-        label: <>Details</>,
-        field: 'additionalDetails',
-        sort: 'asc',
-        width: 270,
-      },
-      {
-        label: <>Documents</>,
-        field: 'Documents',
-        // sort: 'asc',
-        width: 200,
       }
     ],
     rows: students.map((student) => ({
       Name: student.Name,
       ClgName: student.Institute,
       SchemeName: student.SchemeName,
-      additionalDetails: student.additionalDetails,
-      Documents: (
-        <>
-          {flag ? <select
-            name="documents"
-            id="documents"
-            className="custom-dropdown"
-            onChange={(e) => handleDocument(student.id, e.target.value)}
-          >
-            <option value="">Select document</option>
-            {documents.map((document) => (
-              <option key={document} value={document}>
-                {document}
-              </option>
-            ))}
-          </select> : ''}
-        </>
-      )
+    
     })),
   };
 
