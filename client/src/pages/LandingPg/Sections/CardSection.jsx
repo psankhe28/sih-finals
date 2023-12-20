@@ -18,7 +18,8 @@ const CardSection = () => {
                   </p>
                </div>
                <div className="card-right">
-                  <img src={card} alt="" />
+                  {/* <img src='{card}' alt="" /> */}
+                  <img src="https://lh3.googleusercontent.com/drive-viewer/AEYmBYTJmXuoMq8KAKd59_4-Nss8K5mX8DnvJFa3JXUE5_sj5m1KMSAqrc7eqQu2GJdJlXavDr9EbmN3oEW22lCZgioxHq6TZg=s2560" alt=''/>
                </div>
             </div>
          </InnerLayout>

@@ -11,13 +11,10 @@ const FAQSection = () => {
          <InnerLayout>
             <div  data-aos='fade-right'>
                <h3 className="small-heading">Frequently <span>asked questions</span></h3>
-               <p className='c-para'>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit reiciendis architecto recusandae officia veritatis impedit amet praesentium at consequuntur vero,
-               </p>
             </div>
-            <div className="lines">
+            {/* <div className="lines">
                <img src={lines} alt="" />
-            </div>
+            </div> */}
             <div className="questions-con" >
                {
                   questions.map(q => (

@@ -6,14 +6,14 @@ const Slideshow = () => {
   const images = [
     'https://reach-out-sih-prototype.vercel.app/banner_1.jpg',
     'https://reach-out-sih-prototype.vercel.app/banner_2.jpg',
-    'https://reach-out-sih-prototype.vercel.app/banner_3.jpg',
+    // 'https://reach-out-sih-prototype.vercel.app/banner_3.jpg',
     'https://reach-out-sih-prototype.vercel.app/banner_4.jpg'
   ];
 
   const zoomInProperties = {
     indicators: false,
     scale: 1.2,
-    duration: 5000,
+    duration: 3000,
     transitionDuration: 500,
     infinite: true,
     prevArrow: null,

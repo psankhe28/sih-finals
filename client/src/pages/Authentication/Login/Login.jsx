@@ -15,7 +15,6 @@ const Login = ({ setToken }) => {
         email: '', epassword: ''
     })
     const [user, setUser] = useState(true)
-    console.log(formData)
 
     function handleChange(event) {
         setFormData((prevFormData) => {
@@ -53,7 +52,6 @@ const Login = ({ setToken }) => {
                 password: formData.password,
             })
             if (error) throw error
-            console.log(data)
             setToken(data)
             if (level === 'student') {
                 navigate('/student/profile')
@@ -81,7 +79,6 @@ const Login = ({ setToken }) => {
                 password: eData.epassword,
             })
             if (error) throw error
-            console.log(data)
             setToken(data)
             if (level === 'student') {
                 navigate('/student/profile')

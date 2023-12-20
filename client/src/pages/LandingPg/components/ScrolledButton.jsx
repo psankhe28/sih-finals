@@ -33,11 +33,11 @@ const ScrolledButton = () => {
 
 const Button = styled.button`
    position: fixed; 
-   right: 3%;
-   bottom: 40px;
+   right: 13%;
+   bottom: 20px;
    z-index: 1;
    cursor: pointer;
-   color: var(--accent-pink);
+   color: black;
    background: transparent;
    outline: none;
    border: none;

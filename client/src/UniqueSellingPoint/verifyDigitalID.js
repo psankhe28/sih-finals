@@ -161,7 +161,7 @@ const QRCodeDecoder = () => {
   };
 
   return (
-    <div>
+    <div className='m-5'>
       <h1>QR Code Decoder</h1>
       <input type="file" accept="image/*" onChange={verifyDigitalID} />
       <p>Select an image file to decode QR code.</p>

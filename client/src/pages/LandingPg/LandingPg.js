@@ -22,16 +22,17 @@ function LandingPg() {
     <div>
       {/* <Navigation /> */}
       <Header />
+      <br/> <br/> <br/>
       <Slideshow />
       <OuterLayout>
         <main>
           <CardSection />
           <FAQSection />
           <h3>For More such questions, use our bot!</h3>
+          <ScrolledButton />
         </main>
       </OuterLayout>
       {/* <Footer /> */}
-      <ScrolledButton />
     </div>
   );
 }

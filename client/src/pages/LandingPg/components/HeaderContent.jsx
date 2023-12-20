@@ -21,10 +21,11 @@ const HeaderContent = () => {
             </div>
          </div>
          <div className="right-content">
-            <img src={phone} alt="" className="phone" />
+            <img src="https://lh3.googleusercontent.com/drive-viewer/AEYmBYQA8rZ_wW0vTgiBgfVWoDdsxQpdPl_QkcbN_a1NyL1logBM_LYqsyroLhe98pcUUHBYeZOEExqlWZRw0aunPEh8g8MY9Q=s2560" alt=''/>
+            {/* <img src={phone} alt="" className="phone" />
             <img src={ring1} alt="" className="ring1" />
             <img src={message1} alt="" className="message1" />
-            <img src={message2} alt="" className="message2" />
+            <img src={message2} alt="" className="message2" /> */}
          </div>
       </HeaderContentStyled>
    )
@@ -53,7 +54,7 @@ const RegisterButton = styled.button`
 const HeaderContentStyled = styled.div`
    display: grid;
    grid-template-columns: repeat(2, 1fr);
-   padding-top: 3rem;
+   padding-top: 1rem;
 
    @media screen and (max-width: 700px){
         grid-template-columns: repeat(1, 1fr);
@@ -68,7 +69,7 @@ const HeaderContentStyled = styled.div`
       }
 
       h1{
-         font-size: 4rem;
+         font-size: 3rem;
          font-weight: 600;
          @media screen and (max-width: 700px){
             font-size: 3rem;

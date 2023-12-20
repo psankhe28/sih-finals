@@ -15,7 +15,6 @@ const SignUp = () => {
     })
     const [level, setLevel] = useState('student')
     const [user, setUser] = useState(true)
-    console.log(formData)
 
     function handleChange(event) {
         setFormData((prevFormData) => {
@@ -79,8 +78,7 @@ const SignUp = () => {
             if (error) {
                 throw error
             }
-            console.log(data);
-            alert('Check your email for verification link')
+            alert('Check your email for otp')
         } catch (error) {
             alert(error)
         }
