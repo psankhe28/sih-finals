@@ -167,27 +167,27 @@ const HomePage = () => {
           <Route
             exact
             path={"/state/view-schemes"}
-            element={<StateWithSidebar component={ViewScheme} />}
+            element={<StateWithSidebar component={ViewScheme} token={token}/>}
           />
           <Route
             exact
             path={"/state/accepted-applicants"}
-            element={<StateWithSidebar component={AcceptedApplicants} />}
+            element={<StateWithSidebar component={AcceptedApplicants} token={token}/>}
           />
           <Route
             exact
             path={"/state/pending-applicants"}
-            element={<StateWithSidebar component={PendingApplicants} />}
+            element={<StateWithSidebar component={PendingApplicants} token={token}/>}
           />
           <Route
             exact
             path={"/institute/accepted-applicants"}
-            element={<InstitutionWithSidebar component={Accepted} />}
+            element={<InstitutionWithSidebar component={Accepted} token={token}/>}
           />
           <Route
             exact
             path={"/institute/pending-applicants"}
-            element={<InstitutionWithSidebar component={Pending} />}
+            element={<InstitutionWithSidebar component={Pending} token={token}/>}
           />
           <Route
             exact

@@ -62,7 +62,7 @@ const Login = ({ setToken }) => {
                 navigate('/state/view-schemes')
             }
             else {
-                navigate('/institute/pending-applicants')
+                navigate('/institute/accepted-applicants')
             }
             //history.push('/homepage')
             // navigate('/homepage')
@@ -84,7 +84,15 @@ const Login = ({ setToken }) => {
             console.log(data)
             setToken(data)
             //history.push('/homepage')
-            navigate('/homepage')
+            if (level === 'student') {
+                navigate('/student/profile')
+            }
+            else if (level === 'state') {
+                navigate('/state/view-schemes')
+            }
+            else {
+                navigate('/institute/accepted-applicants')
+            }
             //   alert('Check your email for verification link')
 
         } catch (error) {

@@ -8,7 +8,8 @@ import AddScheme from '../AddScheme/AddScheme';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-const ViewScheme = () => {
+const ViewScheme = ({token}) => {
+    const stateName = token.user.user_metadata.instituteName;
     const [viewScheme, setViewScheme] = useState([]);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [selectedScheme, setSelectedScheme] = useState(null);
@@ -18,7 +19,7 @@ const ViewScheme = () => {
     }, []);
 
     async function getScheme() {
-        const { data } = await supabase.from('Schemes').select('*');
+        const { data } = await supabase.from('Schemes').select('*').eq("State", stateName);
         setViewScheme(data || []);
     }
 

@@ -9,8 +9,10 @@ import SortIcon from "@mui/icons-material/Sort";
 import Button from "react-bootstrap/Button";
 import "./Accepted.css";
 
-const AcceptedApplicants = ({ InstituteName }) => {
-  InstituteName = "vjti";
+const AcceptedApplicants = ({ token }) => {
+  
+  const InstituteName = token.user.user_metadata.instituteName;
+  // console.log(InstituteName)
   const [students, setStudents] = useState([]);
   const [fullscreen, setFullscreen] = useState(true);
   const documents = ["aadhaar", "domicile", "collegeid"];

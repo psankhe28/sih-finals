@@ -115,12 +115,6 @@ const PendingApplicants = ({ SchemeName }) => {
         width: 150,
       },
       {
-        label: <>College Name</>,
-        field: 'ClgName',
-        sort: 'asc',
-        width: 270,
-      },
-      {
         label: <>Scheme Name</>,
         field: 'SchemeName',
         sort: 'asc',
@@ -147,7 +141,6 @@ const PendingApplicants = ({ SchemeName }) => {
     ],
     rows: students.map((student) => ({
       Name: student.Name,
-      ClgName: student.Institute,
       SchemeName:student.SchemeName,
       additionalDetails:student.additionalDetails,
       Documents: (
