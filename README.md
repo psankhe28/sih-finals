@@ -1,9 +1,13 @@
 <p align="center">
+  <img src="https://nanonets.com/blog/content/images/2022/06/shutterstock_1785042593.jpg" alt="NSVP" width="200">
+</p>
+
+<p align="center">
   <b>Institute Level Verification Portal</b>
 </p>
 <p align="center">
   <b>Team Bharat</b>
-  <b>SIH 2023 Finals/b>
+  <b>SIH 2023 Finals</b>
 </p>
 <hr>
 
@@ -39,7 +43,8 @@ The Institute-Level Verification Portal aims to leverage advanced technology to 
 - Implemented a dashboard for tracking scholarship applications and managing policies.
 - Utilize Computer Vision and Image Processing techniques to extract relevant data from submitted documents.
 - Develop real-time tracking for document and application status.
-- Created a model to verify the document template using EasyOCR and PaddleOCR
+- Created a model to verify the document template using EasyOCR and PaddleOCR.
+- Dialog flow bot for solving queries of the user and providing them with emails of the concerned authorities.
 
 
 ## 🔗Assets
